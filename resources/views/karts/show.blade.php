@@ -1,0 +1,1 @@
+This view will show a list of all karts in the system

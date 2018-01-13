@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
+
+Route::get('karts/add', 'KartController@create'); //displays form for adding karts in view "add"
+
+Route::get('karts/', 'KartController@show'); //displays all karts as a list in view "show"
