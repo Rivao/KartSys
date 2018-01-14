@@ -1,11 +1,7 @@
 
 $(document).ready(function() {
 
-
-
 	var usable = $('#usable').get(0);
-	var track = $('#on_track').get(0);
-	var broken = $('#brokenCheckB').get(0);
 
 	$('#usable').click( function() {
 

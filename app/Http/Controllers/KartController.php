@@ -89,9 +89,13 @@ class KartController extends Controller
      * @param  \App\Kart  $kart
      * @return \Illuminate\Http\Response
      */
-    public function show(Kart $kart)
+    public function show(Kart $kart_id)
     {
-        //
+
+
+        $kart = DB::table('karts')->where('id', $kart_id->id)->first();
+    
+        return view('karts.kart', compact('kart'));
     }
 
     /**

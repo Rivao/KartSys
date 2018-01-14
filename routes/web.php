@@ -22,3 +22,5 @@ Route::get('karts/add', 'KartController@create'); //displays form for adding kar
 Route::get('karts', 'KartController@index'); //displays all karts as a list in view "show"
 
 Route::post('karts', 'KartController@store');
+
+Route::get('karts/{kart_id}', 'KartController@show')->name('kart');
