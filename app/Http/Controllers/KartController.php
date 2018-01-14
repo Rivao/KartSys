@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Kart;
 use Illuminate\Http\Request;
+use DB;
 
 class KartController extends Controller
 {
@@ -16,7 +17,13 @@ class KartController extends Controller
      */
     public function index()
     {
-        return view('karts.index');
+
+        $karts = DB::table('karts')
+                        ->orderBy('id','desc')
+                        ->get();
+
+
+        return view('karts.index', compact('karts'));
     }
 
     /**
@@ -62,7 +69,7 @@ class KartController extends Controller
         $validator->validate(); //Validates entered data
 
 
-        $kartDb = new Kart;
+        $kartDb = new Kart; //database object or something
 
         $kartDb->kart_nr = request('kart_nr');
         $kartDb->model = request('model');
@@ -70,7 +77,7 @@ class KartController extends Controller
         $kartDb->on_track = request('on_track');
         $kartDb->broken = request('broken');
 
-        $kartDb->save();
+        $kartDb->save(); //save data to database
 
 
         return view('karts.index');
