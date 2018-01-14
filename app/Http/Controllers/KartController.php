@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Kart;
 use Illuminate\Http\Request;
 
 class KartController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,7 @@ class KartController extends Controller
      */
     public function index()
     {
-        //
+        return view('karts.index');
     }
 
     /**
@@ -35,7 +37,43 @@ class KartController extends Controller
      */
     public function store(Request $request)
     {
-        //method where data is going to be validated and stored
+        
+        $messages = [ //messages to show on specific errors
+
+            'required' => 'This field is required',
+            'unique' => 'This field is already in the database',
+            'integer' => 'This field must be an integer',
+            'max' => 'Entered value contains too many simbols',
+            'usable.required_without_all' => 'This must be checked, if the kart is not on track or broken',
+            'on_track.required_without_all' => 'This must be checked, if the kart is on the track at the moment',
+            'broken.required_without_all' => 'This must be checked, if the kart is broken and not usabe or on track',
+
+        ];
+
+        $rules = [ // validation rules
+            'kart_nr' => 'required|unique:karts|integer',
+            'model' => 'required|max:100|string',
+            'usable' => 'required_without_all:on_track,broken',
+            'on_track' => 'required_without_all:usable,broken',
+            'broken' => 'required_without_all:usable,on_track'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
+
+        $kartDb = new Kart;
+
+        $kartDb->kart_nr = request('kart_nr');
+        $kartDb->model = request('model');
+        $kartDb->usable = request('usable');
+        $kartDb->on_track = request('on_track');
+        $kartDb->broken = request('broken');
+
+        $kartDb->save();
+
+
+        return view('karts.index');
     }
 
     /**
@@ -46,7 +84,7 @@ class KartController extends Controller
      */
     public function show(Kart $kart)
     {
-        return view('karts.show');
+        //
     }
 
     /**

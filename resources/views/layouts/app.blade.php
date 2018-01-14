@@ -12,6 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--JQuery-->
+    <script src="/js/jquery-3.2.1.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="/js/tick.js"></script>
 </head>
 <body>
     <div id="app">

@@ -19,4 +19,6 @@ Route::get('/', 'HomeController@index');
 
 Route::get('karts/add', 'KartController@create'); //displays form for adding karts in view "add"
 
-Route::get('karts/', 'KartController@show'); //displays all karts as a list in view "show"
+Route::get('karts', 'KartController@index'); //displays all karts as a list in view "show"
+
+Route::post('karts', 'KartController@store');
