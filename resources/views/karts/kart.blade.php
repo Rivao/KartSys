@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.navAdmin')
 
 @section('content')
 
@@ -31,7 +31,7 @@
 
 		        			@foreach($comments as $comment)
 
-		        			
+
 		        			<p class="col-xs-12">{{ $comment->comment }}</p>
 
 		        			@endforeach

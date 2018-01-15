@@ -1,6 +1,7 @@
+
 @extends('layouts.navAdmin')
 
-
+@section('content')
 
 
 <div class="container">
@@ -22,3 +23,5 @@
         </div>
     </div>
 </div>
+
+@endsection

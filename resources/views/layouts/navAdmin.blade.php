@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
-
-<!DOCTYPE html>
-<html lang="en">
-<body>
+@section('navBar')
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -20,7 +16,6 @@
   </div>
 </nav>
 
-</body>
-</html>
+@yield('content')
 
 @endsection
