@@ -79,8 +79,11 @@ class KartController extends Controller
 
         $kartDb->save(); //save data to database
 
+        $karts = DB::table('karts')
+                        ->orderBy('id','desc')
+                        ->get();
 
-        return view('karts.index');
+        return view('karts.index', compact('karts'));
     }
 
     /**
@@ -94,8 +97,15 @@ class KartController extends Controller
 
 
         $kart = DB::table('karts')->where('id', $kart_id->id)->first();
-    
-        return view('karts.kart', compact('kart'));
+
+        if($kart->usable != null)$usable = 'Usable: &#10004;'; //logic for ticks and x'es
+            else $usable = 'Usable: &#10006;';
+        if($kart->on_track != null)$on_track = 'On Track: &#10004;';
+            else $on_track = 'On Track: &#10006;';
+        if($kart->broken != null)$broken = 'Broken: &#10004;';
+            else $broken = 'Broken: &#10006;';
+
+        return view('karts.kart', compact('kart', 'usable', 'on_track', 'broken'));
     }
 
     /**

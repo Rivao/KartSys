@@ -18,9 +18,9 @@ class CreateKartsTable extends Migration
             $table->increments('id');
             $table->integer('kart_nr');
             $table->string('model');
-            $table->boolean('usable')->default(true)->nullable();
-            $table->boolean('on_track')->default(false)->nullable();
-            $table->boolean('broken')->defaul(false)->nullable();
+            $table->boolean('usable')->nullable();
+            $table->boolean('on_track')->nullable();
+            $table->boolean('broken')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

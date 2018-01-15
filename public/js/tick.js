@@ -2,6 +2,8 @@
 $(document).ready(function() {
 
 	var usable = $('#usable').get(0);
+	var onTrack = $('#on_track').get(0);
+	var broken = $('#broken').get(0);
 
 	$('#usable').click( function() {
 
@@ -27,14 +29,14 @@ $(document).ready(function() {
 
 			$('#usable').attr("disabled", true);
 			$('#broken').attr("disabled", true);
-			usable.value = 1;
+			onTrack.value = 1;
 
 		}
 		else {
 
 			$('#usable').attr("disabled", false);
 			$('#broken').attr("disabled", false);
-			usable.value = 0;
+			onTrack.value = 0;
 		}
 
 	});
@@ -45,14 +47,14 @@ $(document).ready(function() {
 
 			$('#on_track').attr("disabled", true);
 			$('#usable').attr("disabled", true);
-			usable.value = 1;
+			broken.value = 1;
 
 		}
 		else {
 
 			$('#on_track').attr("disabled", false);
 			$('#usable').attr("disabled", false);
-			usable.value = 0;
+			broken.value = 0;
 		}
 
 	});
