@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use Auth;
 
 class CommentController extends Controller
 {
@@ -33,9 +34,17 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $kart_id)
     {
-        //
+        $commentDb = new Comment;
+
+        $commentDb->employee_id = Auth::id();
+        $commentDb->kart_id = $kart_id;
+        $commentDb->comment = request('comment');
+
+        $commentDb->save();
+
+        return back();
     }
 
     /**
@@ -44,9 +53,14 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show($kartId)
     {
-        //
+        /*$comments = DB::table('comment')
+                        ->where('kart_id', $kartId)
+                        ->orderBy('created_at','desc')
+                        ->get();
+
+        return $comments;*/
     }
 
     /**

@@ -21,9 +21,21 @@
 					<tr>
 					<td>{{ $kart->kart_nr }}</td>
 					<td>{{ $kart->model }}</td>
-					<td>{{ $kart->usable }}</td>
-					<td>{{ $kart->on_track }}</td>
-					<td>{{ $kart->broken }}</td>
+					@if($kart->usable != null)
+					<td>&#10004;</td>
+					@else
+					<td>&#10006;</td>
+					@endif
+					@if($kart->on_track != null)
+					<td>&#10004;</td>
+					@else
+					<td>&#10006;</td>
+					@endif
+					@if($kart->broken != null)
+					<td>&#10004;</td>
+					@else
+					<td>&#10006;</td>
+					@endif
 					<td>{{ $kart->created_at }}</td>
 					<td><a href='{{ route('kart', $kart->id) }}'>View</a></td>
 					</tr>
