@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+
 class ReservationController extends Controller
 {
     /**
@@ -32,9 +34,52 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //Lienes rakstītais
     public function store(Request $request)
     {
-        //
+        
+        $rules = [ // validation rules
+            'first_name' => 'required|max:100|string',
+            'last_name' => 'required|max:100|string',
+            'number' => 'required|max:8|integer',
+            'date' => 'required|date',
+            'hours' => 'required',
+            'minutes' => 'required',
+            'length' => 'required',
+            'numberRiders' => 'required|integer'
+        ];
+
+        $messages = [ //messages to show on specific errors
+
+            'required' => 'This field is required',
+            'integer' => 'This field must be an integer',
+            'max' => 'Entered value contains too many simbols',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
+        $resDb = new Reservation; //database object or something
+
+        $resDb->first_name = request('first_name');
+        $resDb->last_name = request('last_name');
+        $resDb->number = request('number');
+        $resDb->date = request('date');
+        $resDb->hours = request('hours');
+        $resDb->minutes = request('minutes');
+        $resDb->length = request('length');
+        $resDb->numberRiders = request('numberRiders');
+
+        $resDb->save(); //save data to database
+
+        $reservations = DB::table('reservations')
+                        ->orderBy('id','desc')
+                        ->get();
+
+        return view('reservations.index', compact('reservations')); //vēl jāuztaisa fails
+                        
+
     }
 
     /**
