@@ -1,3 +1,4 @@
+@extends('layouts.app')
 
 @extends('layouts.navAdmin')
 
