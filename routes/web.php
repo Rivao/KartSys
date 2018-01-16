@@ -32,3 +32,5 @@ Route::get('karts/{kart}/edit', 'KartController@edit')->name('kartEdit');
 Route::post('karts/{kart}/edit', 'KartController@update')->name('kartPost');
 
 Route::delete('karts/{kart}', 'KartController@destroy')->name('kartDel');
+
+Route::get('reservations/add', 'ReservationController@create')->name('reservAdd');
