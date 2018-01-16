@@ -5,6 +5,27 @@ $(document).ready(function() {
 	var onTrack = $('#on_track').get(0);
 	var broken = $('#broken').get(0);
 
+	if(usable.value == 1) { //Checks if any field is already checked, needed when editing
+
+		$('#on_track').attr("disabled", true);
+		$('#broken').attr("disabled", true);
+
+	}
+
+	if(onTrack.value == 1) {
+
+		$('#broken').attr("disabled", true);
+		$('#usable').attr("disabled", true);
+
+	}
+
+	if(broken.value == 1) {
+
+		$('#on_track').attr("disabled", true);
+		$('#usable').attr("disabled", true);
+
+	}
+
 	$('#usable').click( function() {
 
 		if(usable.value == 0) {

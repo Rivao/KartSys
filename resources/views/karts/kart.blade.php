@@ -16,7 +16,11 @@
 							<p class="col-xs-4">{{ $broken }}</p>
 							<p class="col-xs-6">Created: {{ $kart->created_at }}</p>
 							<p class="col-xs-6">Updated: {{ $kart->updated_at }}</p>
-
+							<a href='{{ route('kartEdit', $kart->id) }}'>
+							<button class="btn-primary btn-block" id="editBtn">Edit</button>
+							</a>
+							{{ Form::open(array('route' => array('kartDel', $kart->id), 'method' => 'delete')) }}
+							{{ Form::submit('Delete', array('class' => 'btn-block btn-primary')) }}
 
 
 					</div>
@@ -29,12 +33,15 @@
 		       	 	<div class="panel-heading">Comments</div>
 		        		<div class="panel-body ">
 
-		        			@foreach($comments as $comment)
-
-
-		        			<p class="col-xs-12">{{ $comment->comment }}</p>
-
-		        			@endforeach
+		        			<tbody>
+			        			@foreach($comments as $comment)
+			        			<div class=" col-xs-12 well">
+				        			<p class="col-xs-7 bg-primary">Author: {{ $commentArr[$n]->first_name }} {{ $commentArr[$n++]->last_name}}</p>
+				        			<p class="col-xs-5 bg-primary">Time: {{ $comment->created_at}}</p>
+				        			<p class="col-xs-12 well">{{ $comment->comment }}</p>
+			        			</div>
+			        			@endforeach
+		        			</tbody>
 
 		        			{{ Form::open(array('route' => array('add_comment', $kart->id)), ['class' => "form-horizontal"])}}
 		        			<div class="col-md-8 form-group col-md-offset-2">

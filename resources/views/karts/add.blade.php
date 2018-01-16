@@ -9,12 +9,13 @@
 		        <div class="panel-heading">Add a new Go-Kart</div>
 		        	<div class="panel-body">
 
-
-						{{ Form::open(array('url' => 'karts'), ['class' => "form-horizontal"]) }}
+						@if($edit){{ Form::open(array('route' => array('kartPost', $kart->id)), ['class' => "form-horizontal"]) }}
+						@else {{ Form::open(array('url' => 'karts'), ['class' => "form-horizontal"]) }}
+						@endif
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('kart_nr', 'Kart number:') }}
-							{{ Form::number('kart_nr',null, ['class' => 'col-md-4 form-control']) }}
+							{{ Form::number('kart_nr',$edit ? $kart->kart_nr : '', ['class' => 'col-md-4 form-control']) }}
 							@if ($errors->get('kart_nr'))
     							<div class="alert alert-danger">
         							<ul>          						
@@ -26,7 +27,7 @@
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('model', 'Model name:') }}
-							{{ Form::text('model', null, ['class' => 'col-md-4 form-control']) }}
+							{{ Form::text('model', $edit ? $kart->model : '', ['class' => 'col-md-4 form-control']) }}
 
 							@if ($errors->get('model'))
     							<div class="alert alert-danger">
@@ -39,7 +40,7 @@
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('usable', 'Usable: ') }}
-							{{ Form::checkbox('usable', 0) }}
+							{{ Form::checkbox('usable', $edit ? ($kart->usable ? 1 : 0) : 0, $edit ? ($kart->usable ? true : false) : 0) }}
 
 							@if ($errors->get('usable'))
     							<div class="alert alert-danger">
@@ -52,7 +53,7 @@
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('on_track', 'On track: ') }}
-							{{ Form::checkbox('on_track', 0) }}
+							{{ Form::checkbox('on_track', $edit ? ($kart->on_track ? 1 : 0) : 0, $edit ? ($kart->on_track ? true : false) : 0) }}
 
 							@if ($errors->get('on_track'))
     							<div class="alert alert-danger">
@@ -64,7 +65,7 @@
 						</div>
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('broken', 'Broken: ') }}
-							{{ Form::checkbox('broken', 0) }}
+							{{ Form::checkbox('broken', $edit ? ($kart->broken ? 1 : 0) : 0, $edit ? ($kart->broken ? true : false) : 0) }}
 
 							@if ($errors->get('broken'))
     							<div class="alert alert-danger">

@@ -7,6 +7,7 @@ use App\Kart;
 use Illuminate\Http\Request;
 use DB;
 use CommentController;
+use App\User;
 
 class KartController extends Controller
 {
@@ -21,6 +22,7 @@ class KartController extends Controller
 
         $karts = DB::table('karts')
                         ->orderBy('id','desc')
+                        ->whereNull('deleted_at')
                         ->get();
 
 
@@ -34,7 +36,8 @@ class KartController extends Controller
      */
     public function create()
     {
-        return view('karts.add');
+        $edit = false;
+        return view('karts.add', compact('edit'));
     }
 
     /**
@@ -82,6 +85,7 @@ class KartController extends Controller
 
         $karts = DB::table('karts')
                         ->orderBy('id','desc')
+                        ->whereNull('deleted_at')
                         ->get();
 
         return view('karts.index', compact('karts'));
@@ -110,9 +114,14 @@ class KartController extends Controller
                         ->where('kart_id', $kart_id->id)
                         ->orderBy('created_at','desc')
                         ->get();
+        foreach($comments as $comment){
 
+            $kartComment = DB::table('users')->where('id', $comment->employee_id)->first();
+            $commentArr[] = $kartComment;
+        }
+        $n = 0;
 
-        return view('karts.kart', compact('kart', 'usable', 'on_track', 'broken', 'comments'));
+        return view('karts.kart', compact('kart', 'usable', 'on_track', 'broken', 'comments','commentArr', 'n'));
     }
 
     /**
@@ -123,7 +132,9 @@ class KartController extends Controller
      */
     public function edit(Kart $kart)
     {
-        //
+        $edit = true;
+
+        return view('karts.add', compact('edit','kart'));
     }
 
     /**
@@ -135,7 +146,44 @@ class KartController extends Controller
      */
     public function update(Request $request, Kart $kart)
     {
-        //
+
+        $messages = [ //messages to show on specific errors
+
+            'required' => 'This field is required',
+            'unique' => 'This field is already in the database',
+            'integer' => 'This field must be an integer',
+            'max' => 'Entered value contains too many simbols',
+            'usable.required_without_all' => 'This must be checked, if the kart is not on track or broken',
+            'on_track.required_without_all' => 'This must be checked, if the kart is on the track at the moment',
+            'broken.required_without_all' => 'This must be checked, if the kart is broken and not usabe or on track',
+
+        ];
+
+        if($kart->kart_nr != request('kart_nr')) {
+
+            $kartVal = 'required|unique:karts|integer';
+        }
+        else $kartVal = 'required|integer';
+
+        $rules = [ // validation rules
+            'kart_nr' => $kartVal,
+            'model' => 'required|max:100|string',
+            'usable' => 'required_without_all:on_track,broken',
+            'on_track' => 'required_without_all:usable,broken',
+            'broken' => 'required_without_all:usable,on_track'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
+        $kart->kart_nr = request('kart_nr');
+        $kart->model = request('model');
+        $kart->usable = request('usable');
+        $kart->on_track = request('on_track');
+        $kart->broken = request('broken');
+        $kart->save();
+
+        return redirect()->route('kart', $kart->id);
     }
 
     /**
@@ -146,6 +194,13 @@ class KartController extends Controller
      */
     public function destroy(Kart $kart)
     {
-        //
+        $kart->delete();
+
+        $karts = DB::table('karts')
+                        ->orderBy('id','desc')
+                        ->whereNull('deleted_at')
+                        ->get();
+
+        return redirect()->route('kartPage', $kart);
     }
 }

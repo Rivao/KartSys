@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use Illuminate\Http\Request;
 use Auth;
+use Validator;
 
 class CommentController extends Controller
 {
@@ -36,6 +37,20 @@ class CommentController extends Controller
      */
     public function store(Request $request, $kart_id)
     {
+
+        $messages = [ //messages to show on specific errors
+
+            'required' => 'Please enter your message'
+
+        ];
+
+        $rules = [ // validation rules
+            'comment' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
         $commentDb = new Comment;
 
         $commentDb->employee_id = Auth::id();
