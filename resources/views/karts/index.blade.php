@@ -3,6 +3,9 @@
 @section('content')
 	
 	<div class = "container text-center">
+		<a href = '{{ route('kartAdd') }}'>
+		<button class = 'btn-block btn-primary'>Add new kart</button>
+		</a>
 		<table class = "table table-bordered table-striped table-hover">
 			<thead>
 				<tr>

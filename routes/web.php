@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
-Route::get('karts/add', 'KartController@create'); //displays form for adding karts in view "add"
+Route::get('karts/add', 'KartController@create')->name('kartAdd'); //displays form for adding karts in view "add"
 
 Route::get('karts', 'KartController@index')->name('kartPage'); //displays all karts as a list in view "show"
 
