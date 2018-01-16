@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User;
+use App\Reservation;
+use Auth;
+use Validator;
+Use DB;
 
 class ReservationController extends Controller
 {
@@ -15,7 +18,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        return view('reservations.index');
     }
 
     /**
@@ -70,6 +73,7 @@ class ReservationController extends Controller
         $resDb->minutes = request('minutes');
         $resDb->length = request('length');
         $resDb->numberRiders = request('numberRiders');
+        $resDb->employee_id = Auth::user()->id;
 
         $resDb->save(); //save data to database
 

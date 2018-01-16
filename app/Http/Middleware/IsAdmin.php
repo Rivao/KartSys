@@ -17,7 +17,7 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         $group = Auth::user()->group_id;
-        if($group != '3' || $group != '1') {
+        if($group != '3' && $group != '1') {
 
             return redirect()->route('home');
         }

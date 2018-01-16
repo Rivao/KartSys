@@ -35,4 +35,7 @@ Route::post('karts/{kart}/edit', 'KartController@update')->name('kartPost')->mid
 
 Route::delete('karts/{kart}', 'KartController@destroy')->name('kartDel')->middleware('is-technical');
 
-Route::get('reservations/add', 'ReservationController@create')->name('reservAdd')->middleware('auth');
+Route::get('reservations/add', 'ReservationController@create')->name('reservAdd')->middleware('is-admin');
+
+Route::post('reservations', 'ReservationController@store')->name('add_reserv')->middleware('is-admin');
+Route::get('reservations', 'ReservationController@index')->name('reservIndex')->middleware('is-admin');

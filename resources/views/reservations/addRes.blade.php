@@ -9,9 +9,12 @@
 		        <div class="panel-heading">Add a new reservation</div>
 		        	<div class="panel-body">
 
+		        		{{ Form::open(array('route' => array('add_reserv')), ['class' => "form-horizontal"]) }}
 
 		        		<div class="col-md-8 form-group col-md-offset-2" style="font-size: 20px;">Information about the customer:</div>
-
+@if($errors)
+{{$errors->first()}}
+@endif
 		        		<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('first_name', 'First name:') }}
 							{{ Form::text('first_name',null, ['class' => 'col-md-4 form-control']) }}
