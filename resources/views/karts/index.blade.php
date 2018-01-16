@@ -1,12 +1,13 @@
 @extends('layouts.navAdmin')
 
+
 @section('content')
 	
 	<div class = "container text-center">
 		<a href = '{{ route('kartAdd') }}'>
 		<button class = 'btn-block btn-primary'>Add new kart</button>
 		</a>
-		<table class = "table table-bordered table-striped table-hover">
+		<table id="myTable" class = "table table-bordered table-striped table-hover">
 			<thead>
 				<tr>
 					<th class="text-center">Kart number</th>

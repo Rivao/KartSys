@@ -1,5 +1,9 @@
 @extends('layouts.navAdmin')
 
+@section('jscript')
+<script src="/js/tick.js"></script>
+@endsection
+
 @section('content')
 
 <div class = "container">

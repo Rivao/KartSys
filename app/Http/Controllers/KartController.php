@@ -194,6 +194,7 @@ class KartController extends Controller
      */
     public function destroy(Kart $kart)
     {
+        $kart->kart_nr = 0;
         $kart->delete();
 
         $karts = DB::table('karts')
