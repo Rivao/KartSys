@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Register a new employee</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('groupd_id') ? ' has-error' : '' }}">
-                            <label for="group_id" class="col-md-4 control-label">Group Id</label>
+                            <label for="group_id" class="col-md-4 control-label">Group Id (manager - 1, technical worker - 2, administrator - 3</label>
 
                             <div class="col-md-6">
                                 <input id="group_id" type="text" class="form-control" name="group_id" value="{{ old('group_id') }}" required autofocus>

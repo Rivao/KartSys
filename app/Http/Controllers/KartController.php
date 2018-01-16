@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use DB;
 use CommentController;
 use App\User;
+use Auth;
+use Session;
+use Redirect;
 
 class KartController extends Controller
 {
@@ -132,9 +135,20 @@ class KartController extends Controller
      */
     public function edit(Kart $kart)
     {
-        $edit = true;
+        $group = Auth::user()->group_id;
+        if($group == 1 || $group == 2) {
 
-        return view('karts.add', compact('edit','kart'));
+            $edit = true;
+
+            return view('karts.add', compact('edit','kart'));
+        }
+        else {
+
+            Session::flash('flash_message', '<b>Access denied.</b>');
+            Session::flash('flash_type', 'alert-info');
+
+            return Redirect::to('home', compact('group'));
+        }
     }
 
     /**

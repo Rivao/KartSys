@@ -28,7 +28,9 @@
 
                     In this system You can make and view reservations, look and edit kartings.
                 </div>
-
+                @if($group == 1)
+                <a style="color:white" href="{{ route('register') }}"><button class="btn-block btn-primary">Add new user to the system</button></a>
+                @endif
             </div>
         </div>
     </div>
