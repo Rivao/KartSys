@@ -25,7 +25,7 @@ $(document).ready(function() {
 
 	$('#on_track').click( function() {
 
-		if(usable.value == 0) {
+		if(onTrack.value == 0) {
 
 			$('#usable').attr("disabled", true);
 			$('#broken').attr("disabled", true);
@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 	$('#broken').click( function() {
 
-		if(usable.value == 0) {
+		if(broken.value == 0) {
 
 			$('#on_track').attr("disabled", true);
 			$('#usable').attr("disabled", true);

@@ -76,7 +76,8 @@
             </div>
         </nav>
 
-        @yield('content')
+        @yield('navBar')
+        @yield('auth')
     </div>
 
     <!-- Scripts -->

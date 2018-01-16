@@ -6,6 +6,7 @@ use Validator;
 use App\Kart;
 use Illuminate\Http\Request;
 use DB;
+use CommentController;
 
 class KartController extends Controller
 {
@@ -105,7 +106,13 @@ class KartController extends Controller
         if($kart->broken != null)$broken = 'Broken: &#10004;';
             else $broken = 'Broken: &#10006;';
 
-        return view('karts.kart', compact('kart', 'usable', 'on_track', 'broken'));
+        $comments = DB::table('comments')
+                        ->where('kart_id', $kart_id->id)
+                        ->orderBy('created_at','desc')
+                        ->get();
+
+
+        return view('karts.kart', compact('kart', 'usable', 'on_track', 'broken', 'comments'));
     }
 
     /**

@@ -24,3 +24,5 @@ Route::get('karts', 'KartController@index'); //displays all karts as a list in v
 Route::post('karts', 'KartController@store');
 
 Route::get('karts/{kart_id}', 'KartController@show')->name('kart');
+
+Route::post('karts/{kart_id}', 'CommentController@store')->name('add_comment');

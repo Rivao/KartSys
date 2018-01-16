@@ -1,6 +1,6 @@
-@extends('layouts.navAdmin')
 
-@extends('layouts.app')
+
+@extends('layouts.navAdmin')
 
 @section('content')
 
