@@ -10,24 +10,27 @@
 		        	<div class="panel-body">
 
 
-		        		<div class="Customer info"> Information about customer: </div>
+		        		<div class="col-md-8 form-group col-md-offset-2" style="font-size: 20px;">Information about the customer:</div>
 
-						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('name', 'Name:') }}
-							{{ Form::text('name',null, ['class' => 'col-md-4 form-control']) }}
+		        		<div class="col-md-8 form-group col-md-offset-2">
+							{{ Form::label('first_name', 'First name:') }}
+							{{ Form::text('first_name',null, ['class' => 'col-md-4 form-control']) }}
 						</div>
 
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('sName', 'Surname:') }}
-							{{ Form::text('sName', null, ['class' => 'col-md-4 form-control']) }}
+							{{ Form::label('last_name', 'Last name:') }}
+							{{ Form::text('last_name', null, ['class' => 'col-md-4 form-control']) }}
 
 						</div>
 
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('number', 'Number: ') }}
-							{{ Form::number('number', null, ['class' => 'col-md-4 form-control']) }}
+							{{ Form::label('number', 'Mobile phone number: ') }}
+							{{ Form::text('number', null, ['class' => 'col-md-4 form-control']) }}
 
 						</div>
+
+
+						<div class="col-md-8 form-group col-md-offset-2" style="font-size: 20px;">Reservation date and time:</div>
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('date', 'Date: ') }}
@@ -35,15 +38,18 @@
 
 						</div>
 
-						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('time', 'Time: ') }}
-							{{ Form::text('time', '13:30', ['class' => 'col-md-4 form-control']) }}
+						<div class="col-md-8 form-group col-md-offset-2" style="float: left; width: 50%;">
+							{{ Form::label('hours', 'Hours: ') }}
+							{{ Form::selectRange('hours', 8, 17) }}
 
+							{{ Form::label('minutes', 'Minutes: ') }}
+							{{ Form::selectRange('minutes', 0, 59) }}
 						</div>
+
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('length', 'Length of ride (min): ') }}
-							{{ Form::select('length', array('15' => '15', '20' => '20', '25' => '25', '30' => '30', '35' => '35'), ['class' => 'col-md-4 form-control']) }}
+							{{ Form::select('length', array('15' => '15', '20' => '20', '25' => '25', '30' => '30', '35' => '35', '40' => '40'), ['class' => 'col-md-4 form-control']) }}
 
 						</div>
 

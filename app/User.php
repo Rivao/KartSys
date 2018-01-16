@@ -36,4 +36,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Comment', 'employee_id');
     }
+
+    //Lienes rakstītais
+    public function reservation()
+    {
+        return $this->hasMany('App\Reservation', 'employee_id');
+    }
 }
