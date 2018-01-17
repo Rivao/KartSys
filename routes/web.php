@@ -38,6 +38,10 @@ Route::delete('karts/{kart}', 'KartController@destroy')->name('kartDel')->middle
 Route::get('reservations/add', 'ReservationController@create')->name('reservAdd')->middleware('is-admin')->middleware('lang');
 
 Route::post('reservations', 'ReservationController@store')->name('add_reserv')->middleware('is-admin')->middleware('lang');
+
 Route::get('reservations', 'ReservationController@index')->name('reservIndex')->middleware('is-admin')->middleware('lang');
 
+Route::get('reservations/edit', 'ReservationController@edit')->name('resEdit')->middleware('is-admin')->middleware('lang');
+
 Route::get('{lang}', 'HomeController@language')->name('langRoute')->middleware('auth')->middleware('lang');
+

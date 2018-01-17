@@ -32,13 +32,19 @@
 					<td>{{ $reservation->last_name }}</td>
 					<td>{{ $reservation->number }}</td>
 					<td>{{ $reservation->date }}</td>
-					<td>{{ $reservation->hours }} : {{ $reservation->minutes }}</td>
+
+					<td>{{ $reservation->hours }} : 
+						@if ($reservation->minutes < 10) 0{{ $reservation->minutes }}
+						@else {{ $reservation->minutes }}
+						@endif
+					</td>
+
 					<td>{{ $reservation->length }}</td>
 					<td>{{ $reservation->numberRiders }}</td>
 
 					<td>{{ $reservation->created_at }}</td>
 					<td>{{ $reservation->employee_id }}</td>
-					<td><a >Edit</a></td>
+					<td><a href='{{ route('resEdit', $reservation->id) }}'>Edit</a></td>
 					<td><a >Delete</a></td>
 					
 				</tr>
