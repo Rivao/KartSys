@@ -34,6 +34,7 @@
                 </div>
                 @if($group == 1)
                 <a style="color:white" href="{{ route('register') }}"><button class="btn-block btn-primary">Add new user to the system</button></a>
+                <a style="color:white" href="{{ route('view-users') }}"><button class="btn-block btn-primary">main.ViewUsers</button></a>
                 @endif
             </div>
         </div>

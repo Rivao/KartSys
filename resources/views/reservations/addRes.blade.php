@@ -85,7 +85,7 @@
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('length', 'Length of the ride (min): ') }}
-							{{ Form::select('length', $edit ? $reservation->length : array('15' => '15', '20' => '20', '25' => '25', '30' => '30', '35' => '35', '40' => '40'), ['class' => 'col-md-4 form-control']) }}
+							{{ Form::select('length', $edit ? array($reservation->length) : array('15' => '15', '20' => '20', '25' => '25', '30' => '30', '35' => '35', '40' => '40'), ['class' => 'col-md-4 form-control']) }}
 
 						</div>
 

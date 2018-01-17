@@ -21,6 +21,7 @@
 							</a>
 							{{ Form::open(array('route' => array('kartDel', $kart->id), 'method' => 'delete')) }}
 							{{ Form::submit('Delete', array('class' => 'btn-block btn-primary')) }}
+							{{ Form::close() }}
 
 
 					</div>
