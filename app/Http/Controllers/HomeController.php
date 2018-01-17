@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use User;
 
 class HomeController extends Controller
 {
@@ -26,5 +27,16 @@ class HomeController extends Controller
     {
         $group = Auth::user()->group_id;
         return view('home', compact('group'));
+    }
+
+    public function language($lang)
+    {
+        if($lang == 'en' || $lang == 'lv') {
+            $user = Auth::user();
+            $user->lang = $lang;
+            $user->save();
+        }
+
+        return back();
     }
 }

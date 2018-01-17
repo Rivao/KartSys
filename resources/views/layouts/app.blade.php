@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +37,12 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+                    <ul class="nav navbar-nav">
+                        <li><a>@lang('main.Language')</a></li>
+                        <li><a href="{{ route('langRoute', 'en') }}">@lang('main.English')</a></li>
+                        <li><a href="{{ route('langRoute', 'lv') }}">@lang('main.Latvian')</a></li>
+
+                    </ul>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
