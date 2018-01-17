@@ -15,7 +15,7 @@
                             <label for="user_name" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="user_name" type="text" class="form-control" name="user_name" value="{{ old('user_name') }}" required autofocus>
+                                <input id="user_name" type="text" class="form-control" name="user_name" @if(!$edit) value="{{ old('user_name') }}" @else value="{{ $user->user_name }}" @endif required autofocus>
 
                                 @if ($errors->has('user_name'))
                                     <span class="help-block">
@@ -29,7 +29,7 @@
                             <label for="first_name" class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                                <input id="first_name" type="text" class="form-control" name="first_name" @if(!$edit) value="{{ old('first_name') }}" @else value="{{ $user->first_name }}" @endif required autofocus>
 
                                 @if ($errors->has('first_name'))
                                     <span class="help-block">
@@ -43,7 +43,7 @@
                             <label for="last_name" class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                                <input id="last_name" type="text" class="form-control" name="last_name" @if(!$edit) value="{{ old('last_name') }}" @else value="{{ $user->last_name }}" @endif required autofocus>
 
                                 @if ($errors->has('last_name'))
                                     <span class="help-block">
@@ -57,7 +57,7 @@
                             <label for="group_id" class="col-md-4 control-label">Group Id (manager - 1, technical worker - 2, administrator - 3</label>
 
                             <div class="col-md-6">
-                                <input id="group_id" type="text" class="form-control" name="group_id" value="{{ old('group_id') }}" required autofocus>
+                                <input id="group_id" type="text" class="form-control" name="group_id" @if(!$edit) value="{{ old('group_id') }}" @else value="{{ $user->group_id }}" @endif required autofocus>
 
                                 @if ($errors->has('group_id'))
                                     <span class="help-block">
@@ -71,7 +71,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" @if(!$edit) value="{{ old('email') }}" @else value="{{ $user->email }}" @endif required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

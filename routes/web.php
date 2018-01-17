@@ -15,7 +15,6 @@
 
 Auth::routes();
 
-//Route::get('/register', 'auth\RegisterController@index')->name('regist');
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth')->middleware('lang');
 
@@ -42,9 +41,10 @@ Route::get('reservations/add', 'ReservationController@create')->name('reservAdd'
 
 Route::post('reservations', 'ReservationController@store')->name('add_reserv')->middleware('is-admin')->middleware('lang');
 
-Route::get('reservations', 'ReservationController@index')->name('reservIndex')->middleware('is-admin')->middleware('lang');
+Route::get('reservations', 'ReservationController@index')->name('reservIndex')->middleware('auth')->middleware('lang');
 
 Route::get('reservations/{reservation}', 'ReservationController@edit')->name('resEdit')->middleware('is-admin')->middleware('lang');
+
 
 Route::post('reservations/{reservation}', 'ReservationController@update')->name('resPost')->middleware('is-admin')->middleware('lang');
 
@@ -52,5 +52,13 @@ Route::delete('reservations/{reservation}', 'ReservationController@destroy')->na
 
 
 
+Route::get('/users', 'ManagerController@index')->name('view-users')->middleware('is-manager')->middleware('lang'); 
+
+Route::get('/users/{id}', 'ManagerController@edit')->name('edit-users')->middleware('is-manager')->middleware('lang');
+
+Route::delete('users/deleteUser/{id}', 'ManagerController@destroy')->name('delete-users')->middleware('is-manager')->middleware('lang');
+
+
 Route::get('{lang}', 'HomeController@language')->name('langRoute')->middleware('auth')->middleware('lang');
+
 
