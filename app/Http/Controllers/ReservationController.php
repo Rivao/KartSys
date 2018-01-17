@@ -20,7 +20,7 @@ class ReservationController extends Controller
     {
 
         $reservations = DB::table('reservations')
-                        ->orderBy('id','desc')
+                        ->orderBy('date','desc')
                         ->get();
 
         return view('reservations.index', compact('reservations'));
