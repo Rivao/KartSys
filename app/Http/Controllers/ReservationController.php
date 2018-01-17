@@ -113,7 +113,7 @@ class ReservationController extends Controller
     {
         $edit = true;
 
-        return view('reservations.addRes', compact('edit','id'));
+        return view('reservations.addRes', compact('edit','reservation'));
     }
 
     /**
