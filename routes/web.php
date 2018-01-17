@@ -42,3 +42,6 @@ Route::post('reservations', 'ReservationController@store')->name('add_reserv')->
 Route::get('reservations', 'ReservationController@index')->name('reservIndex')->middleware('is-admin')->middleware('lang');
 
 Route::get('reservations/edit', 'ReservationController@edit')->name('resEdit')->middleware('is-admin')->middleware('lang');
+
+Route::get('{lang}', 'HomeController@language')->name('langRoute')->middleware('auth')->middleware('lang');
+
