@@ -33,7 +33,9 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('reservations.addRes');
+        $edit = false;
+
+        return view('reservations.addRes', compact('edit'));
     }
 
     /**
@@ -43,7 +45,6 @@ class ReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //Lienes rakstītais
     public function store(Request $request)
     {
         
@@ -87,6 +88,8 @@ class ReservationController extends Controller
                         ->orderBy('id','desc')
                         ->get();
 
+
+
         return view('reservations.index', compact('reservations')); //vēl jāuztaisa fails
                         
 
@@ -123,9 +126,45 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reservation $reservation)
     {
-        //
+        
+        $rules = [ // validation rules
+            'first_name' => 'required|max:100|string',
+            'last_name' => 'required|max:100|string',
+            'number' => 'required|min:20000000|max:29999999|integer',
+            'date' => 'required|date',
+            'hours' => 'required',
+            'minutes' => 'required',
+            'length' => 'required',
+            'numberRiders' => 'required|integer'
+        ];
+
+        $messages = [ //messages to show on specific errors
+
+            'required' => 'This field is required',
+            'integer' => 'This field must be an integer',
+            'max' => 'Entered value contains too many simbols',
+            'min' => 'Entered value is too small'
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
+        $reservation->first_name = request('first_name');
+        $reservation->last_name = request('last_name');
+        $reservation->number = request('number');
+        $reservation->date = request('date');
+        $reservation->hours = request('hours');
+        $reservation->minutes = request('minutes');
+        $reservation->length = request('length');
+        $reservation->numberRiders = request('numberRiders');
+
+        $reservation->save();
+
+        return redirect()->route('reservIndex');
+
     }
 
     /**
