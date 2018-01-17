@@ -109,9 +109,11 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Reservation $reservation)
     {
-        //
+        $edit = true;
+
+        return view('reservations.addRes', compact('edit','id'));
     }
 
     /**
