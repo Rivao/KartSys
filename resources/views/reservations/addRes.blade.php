@@ -9,7 +9,7 @@
 		        <div class="panel-heading">Add a new reservation</div>
 		        	<div class="panel-body">
 
-		        		@if($edit) {{ Form::open(array('route' => array('add_reserv', $reservation->id)), ['class' => "form-horizontal"]) }}
+		        		@if($edit) {{ Form::open(array('route' => array('resPost', $reservation->id)), ['class' => "form-horizontal"]) }}
 		        		@else {{ Form::open(array('url' => 'reservations'), ['class' => "form-horizontal"]) }}
 						@endif
 
@@ -75,17 +75,17 @@
 
 						<div class="col-md-8 form-group col-md-offset-2" style="float: left; width: 50%;">
 							{{ Form::label('hours', 'Hours: ') }}
-							{{ Form::selectRange('hours',$edit ? $reservation->hours : 10, 20) }}
+							{{ Form::selectRange('hours', 10, 20, $edit ? $reservation->hours : 10) }}
 
 							{{ Form::label('minutes', 'Minutes: ') }}
-							{{ Form::selectRange('minutes',$edit ? $reservation->minutes : 0, 59) }}
+							{{ Form::selectRange('minutes',0, 59, $edit ? $reservation->minutes : 0) }}
 
 						</div>
 
 
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('length', 'Length of the ride (min): ') }}
-							{{ Form::select('length', $edit ? $reservation->length : array('15' => '15', '20' => '20', '25' => '25', '30' => '30', '35' => '35', '40' => '40'), ['class' => 'col-md-4 form-control']) }}
+							{{ Form::select('length', array('10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '40' => 40, '50' => 50, '60' => 60), $edit ? $reservation->length : '') }}
 
 						</div>
 
