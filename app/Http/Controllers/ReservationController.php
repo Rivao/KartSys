@@ -45,7 +45,7 @@ class ReservationController extends Controller
         $rules = [ // validation rules
             'first_name' => 'required|max:100|string',
             'last_name' => 'required|max:100|string',
-            'number' => 'required|max:8|integer',
+            'number' => 'required|min:20000000|max:29999999|integer',
             'date' => 'required|date',
             'hours' => 'required',
             'minutes' => 'required',
@@ -58,6 +58,7 @@ class ReservationController extends Controller
             'required' => 'This field is required',
             'integer' => 'This field must be an integer',
             'max' => 'Entered value contains too many simbols',
+            'min' => 'Entered value is too small'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
