@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'is-technical' => \App\Http\Middleware\IsTechnical::class,
         'is-admin' => \App\Http\Middleware\IsAdmin::class,
         'is-manager' => \App\Http\Middleware\IsManager::class,
+        'lang' => \App\Http\Middleware\Lang::class,
     ];
 }

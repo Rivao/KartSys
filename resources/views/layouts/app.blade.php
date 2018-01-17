@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +53,10 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->user_name }} <span class="caret"></span>
+                                    @if(Auth::user())
+                                    {{ Auth::user()->user_name }}
+                                    @endif
+                                    <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
