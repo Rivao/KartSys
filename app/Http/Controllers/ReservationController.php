@@ -18,7 +18,12 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view('reservations.index');
+
+        $reservations = DB::table('reservations')
+                        ->orderBy('id','desc')
+                        ->get();
+
+        return view('reservations.index', compact('reservations'));
     }
 
     /**
