@@ -26,7 +26,11 @@
                         </div>
                     @endif
 
-                    In this system You can make and view reservations, look and edit kartings.
+                    @if ($group == 1) As a manager, in this system You can add a new user, make and view reservations, add, view and edit kartings.
+                    @elseif ($group == 2) As a technical worker, in this system You can view and edit kartings. 
+                    @else As an administrator, in this system You can make and view reservations.
+                    @endif
+                    
                 </div>
                 @if($group == 1)
                 <a style="color:white" href="{{ route('register') }}"><button class="btn-block btn-primary">Add new user to the system</button></a>
