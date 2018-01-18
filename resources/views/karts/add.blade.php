@@ -24,7 +24,7 @@
 						@endif
 						{{ csrf_field() }}
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('kart_nr', 'KartNumber:') }}
+							{{ Form::label('kart_nr', Lang::get('main.KartNumber')) }}
 							{{ Form::number('kart_nr',$edit ? $kart->kart_nr : '', ['class' => 'col-md-4 form-control']) }}
 							@if ($errors->get('kart_nr'))
     							<div class="alert alert-danger">
@@ -36,7 +36,7 @@
 						</div>
 
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('model', 'Model name:') }}
+							{{ Form::label('model', Lang::get('main.KartModel')) }}
 							{{ Form::text('model', $edit ? $kart->model : '', ['class' => 'col-md-4 form-control']) }}
 
 							@if ($errors->get('model'))
@@ -49,7 +49,7 @@
 						</div>
 
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('usable', 'Usable: ') }}
+							{{ Form::label('usable', Lang::get('main.Usable')) }}
 							{{ Form::checkbox('usable', $edit ? ($kart->usable ? 1 : 0) : 0, $edit ? ($kart->usable ? true : false) : 0) }}
 
 							@if ($errors->get('usable'))
@@ -62,7 +62,7 @@
 						</div>
 
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('on_track', 'On track: ') }}
+							{{ Form::label('on_track', Lang::get('main.OnTrack')) }}
 							{{ Form::checkbox('on_track', $edit ? ($kart->on_track ? 1 : 0) : 0, $edit ? ($kart->on_track ? true : false) : 0) }}
 
 							@if ($errors->get('on_track'))
@@ -74,7 +74,7 @@
 							@endif
 						</div>
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('broken', 'Broken: ') }}
+							{{ Form::label('broken', Lang::get('main.Broken')) }}
 							{{ Form::checkbox('broken', $edit ? ($kart->broken ? 1 : 0) : 0, $edit ? ($kart->broken ? true : false) : 0) }}
 
 							@if ($errors->get('broken'))
@@ -89,7 +89,7 @@
 							{{ Form::file('image', null) }}
 						</div>
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::submit('Submit') }}
+							{{ Form::submit(Lang::get('main.Submit')) }}
 						</div>
 					</div>
 				</div>

@@ -16,9 +16,9 @@
 		        				<img src="{{ asset('kart_images/'.$kart->image) }}" style="width:80%">
 		        	</div>
 		        	@endif
-							<p class="col-xs-4">{{ $usable }}</p>
-							<p class="col-xs-4">{{ $on_track }}</p>
-							<p class="col-xs-4">{{ $broken }}</p>
+							<p class="col-xs-4">@lang('main.Usable') {{  $usable }}</p>
+							<p class="col-xs-4">@lang('main.OnTrack') {{  $on_track }}</p>
+							<p class="col-xs-4">@lang('main.Broken') {{ $broken }}</p>
 							<p class="col-xs-6">@lang('main.Created'): {{ $kart->created_at }}</p>
 							<p class="col-xs-6">@lang('main.Updated'): {{ $kart->updated_at }}</p>
 							<a href='{{ route('kartEdit', $kart->id) }}'>
@@ -38,7 +38,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
             	<div class="panel panel-default">
-		       	 	<div class="panel-heading">Comments</div>
+		       	 	<div class="panel-heading">@lang('main.Comment')</div>
 		        		<div class="panel-body ">
 
 		        			<tbody>

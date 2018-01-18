@@ -18,6 +18,7 @@ return [
 	'TextTehn'			=> 'As a technical worker, in this system You can view and edit kartings. ',
 	'AddUser'			=> 'Add new user',
 	'ViewUsers'			=> 'View all users',
+	'RegisterUser'		=> 'Add new user',	
 
 	// Kartingu lapa
 	'KartNumber'		=> 'Kart Number',
@@ -31,15 +32,17 @@ return [
 
 	//Kartinga skats
 	'Edit'				=> 'Edit',
-	'Updated'			=> 'Updated',
-	'Author'			=> 'Author',
-	'Time'				=> 'Time',
+	'Updated'			=> 'Updated: ',
+	'Author'			=> 'Author: ',
+	'Time'				=> 'Time: ',
 	'ViewKart'			=> 'View Go-Kart',
 	'AddComment'		=> 'Add comment',
+	'Comment'			=> 'Comments',
 
 	//Kartinga pievienošana un labošana
 	'EditKart'			=> 'View Go-Kart',
 	'AddKart'			=> 'Add a new Go-Kart',
+	'Submit'			=> 'Submit',
 
 	//Rezervāciju lapa
 	'AddRes'			=> 'Add new reservation',
@@ -48,12 +51,36 @@ return [
 	'Number'			=> 'Mobile phone number',
 	'Date'				=> 'Date',
 	'Time'				=> 'Time',
-	'Length'			=> 'Length of the ride',
+	'Length'			=> 'Length of the ride (min)',
 	'Riders'			=> 'Number of riders',
 	'Created'			=> 'Created',
 	'Employee'			=> 'Employee',
 	'Edit'				=> 'Edit',
 	'Delete'			=> 'Delete',
+
+	//Rezervāciju pievienošana un rediģēšana
+	'EditRes'			=> 'Edit reservation',
+	'AddRes'			=> 'Add new reservation',
+	'ResInfoCust'		=> 'Information about the customer:',
+	'ResInfo'			=> 'Reservation date and time:',
+	'Hours'				=> 'Hours: ',
+	'Minutes'			=> 'Minutes: ',
+
+	//Lietotāju skats
+	'Username'			=> 'Username',
+	'Email'				=> 'E-mail',
+	'Group'				=> 'Group',
+	'Manager'			=> 'Manager',
+	'Technical'			=> 'Technical',
+	'Administrator'		=> 'Administrator',	
+
+	//Pievienošana un rediģēšana
+	'RegisterUser'		=> 'Register a new employee',
+	'EditUser'			=> 'Edit User',
+	'GroupId'			=> 'Group ID (manager - 1, technical worker - 2, administrator - 3)',
+	'Password'			=> 'Password',
+	'ConfirmPassword'	=> 'Confirm Password',
+
 ]
 
 

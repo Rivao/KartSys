@@ -7,14 +7,14 @@
 		<table id="myTable" class = "table table-bordered table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="text-center">Username</th>
-						<th class="text-center">First name</th>
-						<th class="text-center">Last name</th>
-						<th class="text-center">E-mail</th>
-						<th class="text-center">Group</th>
-						<th class="text-center">Created</th>
-						<th class="text-center">View</th>
-						<th class="text-center">Delete</th>
+						<th class="text-center">@lang('main.Username')</th>
+						<th class="text-center">@lang('main.firstName')</th>
+						<th class="text-center">@lang('main.lastName')</th>
+						<th class="text-center">@lang('main.Email')</th>
+						<th class="text-center">@lang('main.Group')</th>
+						<th class="text-center">@lang('main.Created')</th>
+						<th class="text-center">@lang('main.View')</th>
+						<th class="text-center">@lang('main.Delete')</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -25,18 +25,20 @@
 						<td>{{ $user->first_name }}</td>
 						<td>{{ $user->last_name }}</td>
 						<td>{{ $user->email }}</td>
+
 						@if($user->group == 1)
-						<td>Manager</td>
+							<td>@lang('main.Manager')</td>
 						@elseif($user->group == 2)
-						<td>Technical</td>
+							<td>@lang('main.Technical')</td>
 						@else
-						<td>Administrator;</td>
+							<td>@lang('main.Administrator')</td>
 						@endif
+
 						<td>{{ $user->created_at }}</td>
-						<td><a href='{{ route('edit-users', $user->id) }}'>Edit</a></td>
+						<td><a href='{{ route('edit-users', $user->id) }}'>@lang('main.Edit')</a></td>
 						<td>{{ Form::open(array('route' => array('delete-users', $user->id), 'method' => 'delete')) }}
 						<!-- <td><a href='>Delete</a></td> -->
-						{{ Form::submit('Delete') }}</td>
+						{{ Form::submit(Lang::get('main.Delete')) }}</td>
 						{{ Form::close() }}
 						</tr>
 

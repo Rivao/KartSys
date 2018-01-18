@@ -36,7 +36,7 @@
                 @if($group == 1)
 
                 {{ Form::open(array('route' => array('register'), 'method' => 'get')) }}
-                            {{ Form::submit(Lang::get('main.RegisterUsers'), array('class' => 'btn-block btn-primary')) }}
+                            {{ Form::submit(Lang::get('main.RegisterUser'), array('class' => 'btn-block btn-primary')) }}
                             {{ Form::close() }}
                 {{ Form::open(array('route' => array('view-users'), 'method' => 'get')) }}
                             {{ Form::submit(Lang::get('main.ViewUsers'), array('class' => 'btn-block btn-primary')) }}

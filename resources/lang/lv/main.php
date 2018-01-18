@@ -19,6 +19,7 @@ return [
 	'TextTehn'			=> 'Kā Tehniskais darbinieks jūs varat apskatīt rezervācijas, aplūkot un rediģēt kartingus.',
 	'AddUser'			=> 'Pievienot jaunu lietotāju',
 	'ViewUsers'			=> 'Apskatīt lietotājus',
+	'RegisterUser'		=> 'Pievienot jaunu lietotāju',
 
 	// Kartingu lapa
 	'KartNumber'		=> 'Kartinga numurs',
@@ -35,12 +36,14 @@ return [
 	'Updated'			=> 'Rediģēts',
 	'Author'			=> 'Autors',
 	'Time'				=> 'Laiks',
-	'ViewKart'			=> 'Kartings',
+	'ViewKart'			=> 'Apskatīt kartingu',
 	'AddComment'		=> 'Pievienot Komentāru',
+	'Comment'			=> 'Komentāri',
 
 	//Kartinga pievienošana un labošana
 	'EditKart'			=> 'Kartinga rediģēšana',
 	'AddKart'			=> 'Jauna kartinga pievienošana',
+	'Submit'			=> 'Saglabāt',
 
 	//Rezervāciju lapa
 	'AddRes'			=> 'Pievienot jaunu rezervāciju',
@@ -49,12 +52,35 @@ return [
 	'Number'			=> 'Telefona numurs',
 	'Date'				=> 'Datums',
 	'Time'				=> 'Laiks',
-	'Length'			=> 'Brauciena ilgums',
+	'Length'			=> 'Brauciena ilgums (min)',
 	'Riders'			=> 'Braucēju skaits',
 	'Created'			=> 'Izveidots',
 	'Employee'			=> 'Darbinieks',
 	'Edit'				=> 'Labot',
 	'Delete'			=> 'Dzēst',
+
+	//Rezervāciju pievienošana un rediģēšana
+	'EditRes'			=> 'Rezervācijas rediģēšana',
+	'AddRes'			=> 'Jaunas rezervācijas pievienošana',
+	'ResInfoCust'		=> 'Informācija par klientu:',
+	'ResInfo'			=> 'Rezervācijas datums un laiks:',
+	'Hours'				=> 'Stundas: ',
+	'Minutes'			=> 'Minūtes: ',
+
+	//Lietotāju skats
+	'Username'			=> 'Lietotājvārds',
+	'Email'				=> 'E-pasts',
+	'Group'				=> 'Grupa',
+	'Manager'			=> 'Menedžeris',
+	'Technical'			=> 'Tehniskais darbinieks',
+	'Administrator'		=> 'Administrators',	
+
+	//Pievienošana un rediģēšana
+	'RegisterUser'		=> 'Jauna darbinieka reģistrācija',
+	'EditUser'			=> 'Lietotāja rediģēšana',
+	'GroupId'			=> 'Grupas ID (menedžeris - 1, tehniskais darbinieks - 2, administrators - 3)',
+	'Password'			=> 'Parole',
+	'ConfirmPassword'	=> 'Apstiprināt paroli',
 
 ]
 
