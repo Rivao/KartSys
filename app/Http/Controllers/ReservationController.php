@@ -47,28 +47,15 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-        
-        $rules = [ // validation rules
-            'first_name' => 'required|max:100|string',
-            'last_name' => 'required|max:100|string',
-            'number' => 'required|min:20000000|max:29999999|integer',
-            'date' => 'required|date',
-            'hours' => 'required',
-            'minutes' => 'required',
-            'length' => 'required',
-            'numberRiders' => 'required|integer'
-        ];
 
         $messages = [ //messages to show on specific errors
 
             'required' => 'This field is required',
+            'unique' => 'This date or time is already taken',
             'integer' => 'This field must be an integer',
             'max' => 'Entered value contains too many simbols',
             'min' => 'Entered value is too small'
         ];
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-        $validator->validate(); //Validates entered data
 
         $resDb = new Reservation; //database object or something
 
@@ -88,7 +75,32 @@ class ReservationController extends Controller
                         ->orderBy('id','desc')
                         ->get();
 
+        $times = DB::table('reservations')->
+                where('date', '=', request('date'))->
+                where('hours', '=', request('hours'))->
+                where('minutes', '=', request('minutes'))->
+                get();
+          
+        if ( !$times->isEmpty() ) {
+            $timeVal = 'required|unique';
+        }
+        else $timeVal = 'required';
 
+        $rules = [ // validation rules
+            'first_name' => 'required|max:100|string',
+            'last_name' => 'required|max:100|string',
+            'number' => 'required|min:20000000|max:29999999|integer',
+            'date' => $timeVal,
+            'hours' => $timeVal,
+            'minutes' => $timeVal,
+            'length' => 'required',
+            'numberRiders' => 'required|integer'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
+        
 
         return view('reservations.index', compact('reservations')); //vēl jāuztaisa fails
                         
@@ -129,20 +141,11 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation)
     {
         
-        $rules = [ // validation rules
-            'first_name' => 'required|max:100|string',
-            'last_name' => 'required|max:100|string',
-            'number' => 'required|min:20000000|max:29999999|integer',
-            'date' => 'required|date',
-            'hours' => 'required',
-            'minutes' => 'required',
-            'length' => 'required',
-            'numberRiders' => 'required|integer'
-        ];
 
         $messages = [ //messages to show on specific errors
 
             'required' => 'This field is required',
+            'unique' => 'This date or time is already taken',
             'integer' => 'This field must be an integer',
             'max' => 'Entered value contains too many simbols',
             'min' => 'Entered value is too small'
@@ -162,6 +165,28 @@ class ReservationController extends Controller
         $reservation->numberRiders = request('numberRiders');
 
         $reservation->save();
+
+        $times = DB::table('reservations')->
+                where('date', '=', request('date'))->
+                where('hours', '=', request('hours'))->
+                where('minutes', '=', request('minutes'))->
+                get();
+          
+        if ( !$times->isEmpty() ) {
+            $timeVal = 'required|unique';
+        }
+        else $timeVal = 'required';
+
+        $rules = [ // validation rules
+            'first_name' => 'required|max:100|string',
+            'last_name' => 'required|max:100|string',
+            'number' => 'required|min:20000000|max:29999999|integer',
+            'date' => $timeVal,
+            'hours' => $timeVal,
+            'minutes' => $timeVal,
+            'length' => 'required',
+            'numberRiders' => 'required|integer'
+        ];
 
         return redirect()->route('reservIndex');
 
