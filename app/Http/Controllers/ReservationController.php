@@ -93,7 +93,20 @@ class ReservationController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
         $validator->validate(); //Validates entered data
 
+        $res= DB::table('reservations') //check if tome is not already taken
+                            ->where([
+                                ['date', '=', $request->date],
+                                ['hours', '=', $request->hours],
+                                ['minutes', '=', $request->minutes],
+                            ])->get();
+                            
+        if(!$res->isEmpty()) {
 
+                $resExists = "Time already reserved";
+                return back()->with(compact('resExists'));
+        }
+
+        $today = false;
         $resDb = new Reservation; //database object or something
 
         $resDb->first_name = request('first_name');
@@ -111,9 +124,13 @@ class ReservationController extends Controller
         $reservations = DB::table('reservations')
                         ->orderBy('id','desc')
                         ->get();
+
+        $users = DB::table('users')
+                ->orderBy('id','desc')
+                ->get();
         
 
-        return view('reservations.index', compact('reservations'));
+        return view('reservations.index', compact('reservations', 'today', 'users'));
                         
 
     }
@@ -175,6 +192,22 @@ class ReservationController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
         $validator->validate(); //Validates entered data
+
+        $res= DB::table('reservations') //check if tome is not already taken
+                            ->where([
+                                ['date', '=', $request->date],
+                                ['hours', '=', $request->hours],
+                                ['minutes', '=', $request->minutes],
+                            ])->get();
+        if(!$res->isEmpty()) {
+                if($reservation->date != request('date') || $reservation->hours != request('hours') || $reservation->minutes != request('minutes')) {
+
+                $resExists = "Time already reserved";
+                return back()->with(compact('resExists'));
+            }
+
+        }
+
 
         $reservation->first_name = request('first_name');
         $reservation->last_name = request('last_name');

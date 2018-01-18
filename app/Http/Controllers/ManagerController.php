@@ -23,7 +23,7 @@ class ManagerController extends Controller
 
     	$edit = true;
 
-    	$user = User::find($id)->first();
+    	$user = User::find($id);
 
 
     	return view('auth.register', compact('user', 'edit'));

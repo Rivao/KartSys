@@ -78,6 +78,9 @@
         							</ul>
     							</div>
 							@endif
+							@if(session('resExists'))
+    							<p class="text-danger">{{ session('resExists') }}</p>
+							@endif
 
 						</div>
 
