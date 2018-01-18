@@ -35,6 +35,8 @@ Route::post('karts/{kart}/edit', 'KartController@update')->name('kartPost')->mid
 
 Route::delete('karts/{kart}', 'KartController@destroy')->name('kartDel')->middleware('is-technical')->middleware('lang');
 
+//Route::post('karts/{kart_id}', 'CommentController@store')->name('imageAdd')->middleware('is-technical')->middleware('lang');
+
 
 
 Route::get('reservations/add', 'ReservationController@create')->name('reservAdd')->middleware('is-admin')->middleware('lang');

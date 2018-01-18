@@ -11,6 +11,11 @@
 
 							<p class="col-xs-12">@lang('main.KartNumber'): {{ $kart->kart_nr }}</p>
 							<p class="col-xs-12">@lang('main.KartModel'): {{ $kart->model }}</p>
+              @if($kart->image)
+							<div class="col-xs-6 col-xs-offset-3">
+		        				<img src="{{ asset('kart_images/'.$kart->image) }}" style="width:80%">
+		        	</div>
+		        	@endif
 							<p class="col-xs-4">{{ $usable }}</p>
 							<p class="col-xs-4">{{ $on_track }}</p>
 							<p class="col-xs-4">{{ $broken }}</p>
@@ -19,6 +24,7 @@
 							<a href='{{ route('kartEdit', $kart->id) }}'>
 							<button class="btn-primary btn-block" id="editBtn">@lang('main.Edit')</button>
 							</a>
+					       
 							{{ Form::open(array('route' => array('kartDel', $kart->id), 'method' => 'delete')) }}
 							{{ csrf_field() }}
 							{{ Form::submit(Lang::get('main.Delete'), array('class' => 'btn-block btn-primary')) }}
