@@ -57,6 +57,8 @@ return [
 	'Employee'			=> 'Employee',
 	'Edit'				=> 'Edit',
 	'Delete'			=> 'Delete',
+	'ResToday'			=> 'Today`s reservations',
+	'Today'				=> 'Today`s reservations: ',
 
 	//Rezervāciju pievienošana un rediģēšana
 	'EditRes'			=> 'Edit reservation',

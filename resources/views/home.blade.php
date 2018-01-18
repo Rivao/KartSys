@@ -28,7 +28,7 @@
 
                     @if ($group == 1) @lang('main.TextMen') 
                     @elseif ($group == 2) @lang('main.TextTehn') 
-                    @else @lang('main.TexAdmin') 
+                    @else @lang('main.TextAdmin') 
                     @endif
                     
                 </div>
