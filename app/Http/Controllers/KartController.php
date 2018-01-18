@@ -72,8 +72,15 @@ class KartController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
         $validator->validate(); //Validates entered data
 
-
         $kartDb = new Kart; //database object or something
+
+        if($request->image){
+
+            $photoName = time() . '.Kart.png';
+            $request->image->move(public_path('kart_images'), $photoName);
+            $kartDb->image = $photoName;
+
+        }
 
         $kartDb->kart_nr = request('kart_nr');
         $kartDb->model = request('model');
@@ -176,10 +183,6 @@ class KartController extends Controller
         $validator->validate(); //Validates entered data
 
         if($request->image){
-            /*
-            $image = Input::file('image');
-            $image_name = time() . '.Kart';
-            $image->move('images', $image_name);*/
 
             $photoName = time() . '.Kart.png';
             $request->image->move(public_path('kart_images'), $photoName);

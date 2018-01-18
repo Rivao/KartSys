@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
         	'user_name' => 'manager',
-            'first_name' => str_random(10),
-            'last_name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
+            'first_name' => 'Manager',
+            'last_name' => 'Manager',
+            'email' => str_random(5).'@gmail.com',
             'password' => bcrypt('secret'),
             'group_id' => 1,
             

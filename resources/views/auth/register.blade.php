@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.navAdmin')
 
 @section('auth')
 <div class="container">
