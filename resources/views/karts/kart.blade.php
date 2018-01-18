@@ -6,28 +6,28 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
             	<div class="panel panel-default">
-		       	 	<div class="panel-heading">View Go-Kart</div>
+		       	 	<div class="panel-heading"> @lang('main.ViewKart')</div>
 		        		<div class="panel-body ">
-					        
-							<p class="col-xs-12">Kart number: {{ $kart->kart_nr }}</p>
-							<p class="col-xs-12">Model: {{ $kart->model }}</p>
-							@if($kart->image)
+
+							<p class="col-xs-12">@lang('main.KartNumber'): {{ $kart->kart_nr }}</p>
+							<p class="col-xs-12">@lang('main.KartModel'): {{ $kart->model }}</p>
+              @if($kart->image)
 							<div class="col-xs-6 col-xs-offset-3">
 		        				<img src="{{ asset('kart_images/'.$kart->image) }}" style="width:80%">
-		        			</div>
-		        			@endif
+		        	</div>
+		        	@endif
 							<p class="col-xs-4">{{ $usable }}</p>
 							<p class="col-xs-4">{{ $on_track }}</p>
 							<p class="col-xs-4">{{ $broken }}</p>
-							<p class="col-xs-6">Created: {{ $kart->created_at }}</p>
-							<p class="col-xs-6">Updated: {{ $kart->updated_at }}</p>
-							{{ Form::open(array('route' => array('kartEdit', $kart->id), 'method' => 'get')) }}
-							{{ Form::submit('Edit', array('class' => 'btn-block btn-primary')) }}
-							{{ Form::close() }}
-
+							<p class="col-xs-6">@lang('main.Created'): {{ $kart->created_at }}</p>
+							<p class="col-xs-6">@lang('main.Updated'): {{ $kart->updated_at }}</p>
+							<a href='{{ route('kartEdit', $kart->id) }}'>
+							<button class="btn-primary btn-block" id="editBtn">@lang('main.Edit')</button>
+							</a>
+					       
 							{{ Form::open(array('route' => array('kartDel', $kart->id), 'method' => 'delete')) }}
 							{{ csrf_field() }}
-							{{ Form::submit('Delete', array('class' => 'btn-block btn-primary')) }}
+							{{ Form::submit(Lang::get('main.Delete'), array('class' => 'btn-block btn-primary')) }}
 							{{ Form::close() }}
 
 
@@ -44,8 +44,8 @@
 		        			<tbody>
 			        			@foreach($comments as $comment)
 			        			<div class=" col-xs-12 well">
-				        			<p class="col-xs-7 bg-primary">Author: {{ $commentArr[$n]->first_name }} {{ $commentArr[$n++]->last_name}}</p>
-				        			<p class="col-xs-5 bg-primary">Time: {{ $comment->created_at}}</p>
+				        			<p class="col-xs-7 bg-primary">@lang('main.Author'): {{ $commentArr[$n]->first_name }} {{ $commentArr[$n++]->last_name}}</p>
+				        			<p class="col-xs-5 bg-primary">@lang('main.Time'): {{ $comment->created_at}}</p>
 				        			<p class="col-xs-12 well">{{ $comment->comment }}</p>
 			        			</div>
 			        			@endforeach
@@ -63,7 +63,7 @@
 							@endif
 						</div>
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::submit('Add comment') }}
+							{{ Form::submit(Lang::get('main.AddComment')) }}
 						</div>
 
 		        	</div>

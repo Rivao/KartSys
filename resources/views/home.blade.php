@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="panel-heading" style="width: 900px; font-size: 25px;">
-                    Hello and welcome to the karting hall system!
+                    @lang('main.Hello')
                 </div>
 
                 <div class="panel-body" style="font-size: 20px; width: 800px;">
@@ -26,21 +26,23 @@
                         </div>
                     @endif
 
-                    @if ($group == 1) As a manager, in this system You can add a new user, make and view reservations, add, view and edit kartings.
-                    @elseif ($group == 2) As a technical worker, in this system You can view and edit kartings. 
-                    @else As an administrator, in this system You can make and view reservations.
+                    @if ($group == 1) @lang('main.TextMen') 
+                    @elseif ($group == 2) @lang('main.TextTehn') 
+                    @else @lang('main.TexAdmin') 
                     @endif
                     
                 </div>
+
                 @if($group == 1)
+
                 {{ Form::open(array('route' => array('register'), 'method' => 'get')) }}
                             {{ Form::submit(Lang::get('main.RegisterUsers'), array('class' => 'btn-block btn-primary')) }}
                             {{ Form::close() }}
                 {{ Form::open(array('route' => array('view-users'), 'method' => 'get')) }}
                             {{ Form::submit(Lang::get('main.ViewUsers'), array('class' => 'btn-block btn-primary')) }}
                             {{ Form::close() }}
-                
                 @endif
+
             </div>
         </div>
     </div>

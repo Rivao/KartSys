@@ -5,22 +5,22 @@
 	
 	<div class = "container text-center">
 		<a href = '{{ route('reservAdd') }}'>
-		<button class = 'btn-block btn-primary'>Add new reservation</button>
+		<button class = 'btn-block btn-primary'>@lang('main.AddRes')</button>
 		</a>
 		<table id="myTable" class = "table table-bordered table-striped table-hover">
 			<thead>
 				<tr>
-					<th class="text-center">First name</th>
-					<th class="text-center">Last name</th>
-					<th class="text-center">Mobile phone number</th>
-					<th class="text-center">Date</th>
-					<th class="text-center">Time</th>
-					<th class="text-center">Length of the ride</th>
-					<th class="text-center">Number of riders</th>
-					<th class="text-center">Added</th>
-					<th class="text-center">Employee</th>
-					<th class="text-center">Edit</th>
-					<th class="text-center">Delete</th>
+					<th class="text-center">@lang('main.firstName')</th>
+					<th class="text-center">@lang('main.lastName')</th>
+					<th class="text-center">@lang('main.Number')</th>
+					<th class="text-center">@lang('main.Date')</th>
+					<th class="text-center">@lang('main.Time')</th>
+					<th class="text-center">@lang('main.Length')</th>
+					<th class="text-center">@lang('main.Riders')</th>
+					<th class="text-center">@lang('main.Created')</th>
+					<th class="text-center">@lang('main.Employee')</th>
+					<th class="text-center">@lang('main.Edit')</th>
+					<th class="text-center">@lang('main.Delete')</th>
 				</tr>
 			</thead>
 		
@@ -43,9 +43,23 @@
 					<td>{{ $reservation->numberRiders }}</td>
 
 					<td>{{ $reservation->created_at }}</td>
-					<td>{{ $reservation->employee_id }}</td>
-					<td><a href='{{ route('resEdit', $reservation->id) }}'>Edit</a></td>
-					<td><a >Delete</a></td>
+					<td>
+						@foreach( $users as $user)
+
+							@if($user->id == $reservation->employee_id) {{ $user->user_name }}
+							@endif
+
+						@endforeach
+						
+					</td>
+
+					<td><a href='{{ route('resEdit', $reservation->id) }}' >@lang('main.Edit')</a></td>
+					<td>
+						{{ Form::open(array('route' => array('resDel', $reservation->id), 'method' => 'delete' ) ) }}
+						{{ Form::submit(Lang::get('main.Delete')) }}
+					</td>
+					{{ Form::close() }}
+						
 					
 				</tr>
 

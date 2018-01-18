@@ -23,7 +23,11 @@ class ReservationController extends Controller
                         ->orderBy('date','desc')
                         ->get();
 
-        return view('reservations.index', compact('reservations'));
+        $users = DB::table('users')
+                ->orderBy('id','desc')
+                ->get();
+
+        return view('reservations.index', compact('reservations', 'users'));
     }
 
     /**
@@ -82,7 +86,7 @@ class ReservationController extends Controller
                 get();
           
         if ( !$times->isEmpty() ) {
-            $timeVal = 'required|unique';
+            $timeVal = 'required|unique:reservations';
         }
         else $timeVal = 'required';
 
@@ -145,15 +149,11 @@ class ReservationController extends Controller
         $messages = [ //messages to show on specific errors
 
             'required' => 'This field is required',
-            'unique' => 'This date or time is already taken',
             'integer' => 'This field must be an integer',
             'max' => 'Entered value contains too many simbols',
-            'min' => 'Entered value is too small'
+            'min' => 'Entered value is too small',
+            'unique' => 'This date and time is already taken',
         ];
-
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-        $validator->validate(); //Validates entered data
 
         $reservation->first_name = request('first_name');
         $reservation->last_name = request('last_name');
@@ -166,16 +166,20 @@ class ReservationController extends Controller
 
         $reservation->save();
 
-        $times = DB::table('reservations')->
+        $time = DB::table('reservations')->
                 where('date', '=', request('date'))->
                 where('hours', '=', request('hours'))->
                 where('minutes', '=', request('minutes'))->
                 get();
-          
-        if ( !$times->isEmpty() ) {
-            $timeVal = 'required|unique';
+                
+
+        if ( !$time->isEmpty()) {
+            $timeVal = 'required|unique:reservations';
         }
-        else $timeVal = 'required';
+        else {
+            $timeVal = 'required|date';
+        }
+
 
         $rules = [ // validation rules
             'first_name' => 'required|max:100|string',
@@ -187,6 +191,13 @@ class ReservationController extends Controller
             'length' => 'required',
             'numberRiders' => 'required|integer'
         ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
+        
+          
+        
 
         return redirect()->route('reservIndex');
 
@@ -200,6 +211,11 @@ class ReservationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reservation = Reservation::find($id);
+        $reservation->delete();
+
+        $reservation = \App\Reservation::all();
+
+        return back(); //redirect()->route('view-users', $users);
     }
 }
