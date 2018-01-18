@@ -12,7 +12,7 @@
 		        		@if($edit) {{ Form::open(array('route' => array('resPost', $reservation->id)), ['class' => "form-horizontal"]) }}
 		        		@else {{ Form::open(array('url' => 'reservations'), ['class' => "form-horizontal"]) }}
 						@endif
-
+						{{ csrf_field() }}
 		        		<div class="col-md-8 form-group col-md-offset-2" style="font-size: 20px;">Information about the customer:</div>
 
 		        		<div class="col-md-8 form-group col-md-offset-2">

@@ -16,7 +16,7 @@
 						@if($edit){{ Form::open(array('route' => array('kartPost', $kart->id)), ['class' => "form-horizontal"]) }}
 						@else {{ Form::open(array('url' => 'karts'), ['class' => "form-horizontal"]) }}
 						@endif
-
+						{{ csrf_field() }}
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::label('kart_nr', 'Kart number:') }}
 							{{ Form::number('kart_nr',$edit ? $kart->kart_nr : '', ['class' => 'col-md-4 form-control']) }}

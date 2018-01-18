@@ -5,18 +5,18 @@
 	
 	<div class = "container text-center">
 		<a href = '{{ route('kartAdd') }}'>
-		<button class = 'btn-block btn-primary'>Add new kart</button>
+		<button class = 'btn-block btn-primary'>@lang('main.AddKart')</button>
 		</a>
 		<table id="myTable" class = "table table-bordered table-striped table-hover">
 			<thead>
 				<tr>
-					<th class="text-center">Kart number</th>
-					<th class="text-center">Kart model</th>
-					<th class="text-center">Usable</th>
-					<th class="text-center">On Track</th>
-					<th class="text-center">Broken</th>
-					<th class="text-center">Added</th>
-					<th class="text-center">View</th>
+					<th class="text-center">@lang('main.KartNumber')</th>
+					<th class="text-center">@lang('main.KartModel')</th>
+					<th class="text-center">@lang('main.Usable')</th>
+					<th class="text-center">@lang('main.OnTrack')</th>
+					<th class="text-center">@lang('main.Broken')</th>
+					<th class="text-center">@lang('main.Added')</th>
+					<th class="text-center">@lang('main.View')</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,7 +41,7 @@
 					<td>&#10006;</td>
 					@endif
 					<td>{{ $kart->created_at }}</td>
-					<td><a href='{{ route('kart', $kart->id) }}'>View</a></td>
+					<td><a href='{{ route('kart', $kart->id) }}'>@lang('main.View')</a></td>
 					</tr>
 
 				@endforeach

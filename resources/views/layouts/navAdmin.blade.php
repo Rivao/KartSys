@@ -7,7 +7,7 @@
   <div class="container-fluid" style="padding-left: 195px;">
 
     <div class="navbar-header">
-      <a class="navbar-brand" href="http://kartsys.test"style="font-size: 30px; font-weight: bold;">Karting Hall</a>
+      <a class="navbar-brand" href="http://kartsys.test"style="font-size: 30px; font-weight: bold;">@lang('main.KartHall')</a>
     </div>
 
     <ul class="nav navbar-nav">
