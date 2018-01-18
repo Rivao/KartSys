@@ -12,6 +12,8 @@ return [
 	'Latvian'			=> 'Latviešu valoda',
 	'Language'			=> 'Valoda',
 
+	'Logout'			=> 'Izlogoties',
+
 	//Galvenā lapa
 	'Hello'				=> 'Esiet sveicināti Kartingu Halles sistēmā!',
 	'TextMen'			=> 'Kā menedžeris jūs varat aplūkot un pievienot jaunus darbiniekus, izveidot, rediģēt un aplūkot rezervācijas, kā arī pievienot 						jaunus kartingus, tos apskatīt un rediģēt. ',
