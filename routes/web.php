@@ -23,6 +23,7 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth')->middl
 Route::get('karts/add', 'KartController@create')->name('kartAdd')->middleware('is-technical')->middleware('lang'); //displays form for adding karts in view "add"
 
 Route::get('karts', 'KartController@index')->name('kartPage')->middleware('auth')->middleware('lang'); //displays all karts as a list in view "show"
+
 Route::post('karts', 'KartController@store')->middleware('auth')->middleware('lang');
 
 Route::get('karts/{kart_id}', 'KartController@show')->name('kart')->middleware('auth')->middleware('lang');
@@ -44,6 +45,8 @@ Route::get('reservations/add', 'ReservationController@create')->name('reservAdd'
 Route::post('reservations', 'ReservationController@store')->name('add_reserv')->middleware('is-admin')->middleware('lang');
 
 Route::get('reservations', 'ReservationController@index')->name('reservIndex')->middleware('auth')->middleware('lang');
+
+Route::get('reservations/today', 'ReservationController@today')->name('reservToday')->middleware('auth')->middleware('lang');
 
 Route::get('reservations/{reservation}/edit', 'ReservationController@edit')->name('resEdit')->middleware('is-admin')->middleware('lang');
 

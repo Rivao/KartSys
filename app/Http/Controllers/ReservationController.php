@@ -19,6 +19,8 @@ class ReservationController extends Controller
     public function index()
     {
 
+        $today = false;
+
         $reservations = DB::table('reservations')
                         ->orderBy('date','desc')
                         ->get();
@@ -27,8 +29,24 @@ class ReservationController extends Controller
                 ->orderBy('id','desc')
                 ->get();
 
-        return view('reservations.index', compact('reservations', 'users'));
+        return view('reservations.index', compact('today', 'reservations', 'users'));
     }
+
+    public function today()
+    {
+        $today = true;
+
+        $reservations = DB::table('reservations')
+                        ->orderBy('date','desc')
+                        ->get();
+
+        $users = DB::table('users')
+                ->orderBy('id','desc')
+                ->get();
+
+        return view('reservations.index', compact('today','reservations', 'users'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,6 +79,21 @@ class ReservationController extends Controller
             'min' => 'Entered value is too small'
         ];
 
+        $rules = [ // validation rules
+            'first_name' => 'required|max:100|string',
+            'last_name' => 'required|max:100|string',
+            'number' => 'required|min:20000000|max:29999999|integer',
+            'date' => 'required|date',
+            'hours' => 'required|integer',
+            'minutes' => 'required|integer',
+            'length' => 'required|integer',
+            'numberRiders' => 'required|integer'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
+
         $resDb = new Reservation; //database object or something
 
         $resDb->first_name = request('first_name');
@@ -78,35 +111,9 @@ class ReservationController extends Controller
         $reservations = DB::table('reservations')
                         ->orderBy('id','desc')
                         ->get();
-
-        $times = DB::table('reservations')->
-                where('date', '=', request('date'))->
-                where('hours', '=', request('hours'))->
-                where('minutes', '=', request('minutes'))->
-                get();
-          
-        if ( !$times->isEmpty() ) {
-            $timeVal = 'required|unique:reservations';
-        }
-        else $timeVal = 'required';
-
-        $rules = [ // validation rules
-            'first_name' => 'required|max:100|string',
-            'last_name' => 'required|max:100|string',
-            'number' => 'required|min:20000000|max:29999999|integer',
-            'date' => $timeVal,
-            'hours' => $timeVal,
-            'minutes' => $timeVal,
-            'length' => 'required',
-            'numberRiders' => 'required|integer'
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-        $validator->validate(); //Validates entered data
-
         
 
-        return view('reservations.index', compact('reservations')); //vēl jāuztaisa fails
+        return view('reservations.index', compact('reservations'));
                         
 
     }
@@ -155,6 +162,20 @@ class ReservationController extends Controller
             'unique' => 'This date and time is already taken',
         ];
 
+        $rules = [ // validation rules
+            'first_name' => 'required|max:100|string',
+            'last_name' => 'required|max:100|string',
+            'number' => 'required|min:20000000|max:29999999|integer',
+            'date' => 'required|date',
+            'hours' => 'required|integer',
+            'minutes' => 'required|integer',
+            'length' => 'required|integer',
+            'numberRiders' => 'required|integer'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator->validate(); //Validates entered data
+
         $reservation->first_name = request('first_name');
         $reservation->last_name = request('last_name');
         $reservation->number = request('number');
@@ -166,40 +187,9 @@ class ReservationController extends Controller
 
         $reservation->save();
 
-        $time = DB::table('reservations')->
-                where('date', '=', request('date'))->
-                where('hours', '=', request('hours'))->
-                where('minutes', '=', request('minutes'))->
-                get();
-                
-
-        if ( !$time->isEmpty()) {
-            $timeVal = 'required|unique:reservations';
-        }
-        else {
-            $timeVal = 'required|date';
-        }
-
-
-        $rules = [ // validation rules
-            'first_name' => 'required|max:100|string',
-            'last_name' => 'required|max:100|string',
-            'number' => 'required|min:20000000|max:29999999|integer',
-            'date' => $timeVal,
-            'hours' => $timeVal,
-            'minutes' => $timeVal,
-            'length' => 'required',
-            'numberRiders' => 'required|integer'
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-        $validator->validate(); //Validates entered data
-
-        
-          
-        
-
         return redirect()->route('reservIndex');
+
+        
 
     }
 

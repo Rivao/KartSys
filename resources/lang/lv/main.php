@@ -58,6 +58,8 @@ return [
 	'Employee'			=> 'Darbinieks',
 	'Edit'				=> 'Labot',
 	'Delete'			=> 'Dzēst',
+	'ResToday'			=> 'Šodienas rezervācijas',
+	'Today'				=> 'Šodienas rezervācijas:',
 
 	//Rezervāciju pievienošana un rediģēšana
 	'EditRes'			=> 'Rezervācijas rediģēšana',
