@@ -10,7 +10,13 @@
 	<div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-		        <div class="panel-heading">Add a new Go-Kart</div>
+		        <div class="panel-heading">
+
+		        	@if($edit) @lang('main.EditKart') 
+		        	@else @lang('main.AddKart')
+		        	@endif
+		        	
+		    	</div>
 		        	<div class="panel-body">
 
 						@if($edit){{ Form::open(array('route' => array('kartPost', $kart->id)), ['class' => "form-horizontal"]) }}
@@ -18,7 +24,7 @@
 						@endif
 						{{ csrf_field() }}
 						<div class="col-md-8 form-group col-md-offset-2">
-							{{ Form::label('kart_nr', 'Kart number:') }}
+							{{ Form::label('kart_nr', 'KartNumber:') }}
 							{{ Form::number('kart_nr',$edit ? $kart->kart_nr : '', ['class' => 'col-md-4 form-control']) }}
 							@if ($errors->get('kart_nr'))
     							<div class="alert alert-danger">

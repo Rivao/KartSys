@@ -43,12 +43,11 @@ Route::post('reservations', 'ReservationController@store')->name('add_reserv')->
 
 Route::get('reservations', 'ReservationController@index')->name('reservIndex')->middleware('auth')->middleware('lang');
 
-Route::get('reservations/{reservation}', 'ReservationController@edit')->name('resEdit')->middleware('is-admin')->middleware('lang');
+Route::get('reservations/{reservation}/edit', 'ReservationController@edit')->name('resEdit')->middleware('is-admin')->middleware('lang');
 
+Route::post('reservations/{reservation}/edit', 'ReservationController@update')->name('resPost')->middleware('is-admin')->middleware('lang');
 
-Route::post('reservations/{reservation}', 'ReservationController@update')->name('resPost')->middleware('is-admin')->middleware('lang');
-
-Route::delete('reservations/{reservation}', 'ReservationController@destroy')->name('resDel')->middleware('is-technical')->middleware('lang');
+Route::delete('reservations/{reservation}/delete', 'ReservationController@destroy')->name('resDel')->middleware('is-admin')->middleware('lang');
 
 
 

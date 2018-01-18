@@ -6,7 +6,13 @@
 	<div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-		        <div class="panel-heading">Add a new reservation</div>
+		        <div class="panel-heading">
+		        	
+		        	@if($edit) Edit reservation
+		        	@else Add new reservation
+		        	@endif
+
+		        </div>
 		        	<div class="panel-body">
 
 		        		@if($edit) {{ Form::open(array('route' => array('resPost', $reservation->id)), ['class' => "form-horizontal"]) }}
