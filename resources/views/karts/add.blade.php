@@ -13,8 +13,8 @@
 		        <div class="panel-heading">Add a new Go-Kart</div>
 		        	<div class="panel-body">
 
-						@if($edit){{ Form::open(array('route' => array('kartPost', $kart->id)), ['class' => "form-horizontal"]) }}
-						@else {{ Form::open(array('url' => 'karts'), ['class' => "form-horizontal"]) }}
+						@if($edit){{ Form::open(array('route' => array('kartPost', $kart->id), 'files' => true), ['class' => "form-horizontal"]) }}
+						@else {{ Form::open(array('url' => 'karts', 'files' => true), ['class' => "form-horizontal"]) }}
 						@endif
 						{{ csrf_field() }}
 						<div class="col-md-8 form-group col-md-offset-2">
@@ -79,7 +79,9 @@
     							</div>
 							@endif
 						</div>
-
+						<div class="col-md-8 form-group col-md-offset-2">
+							{{ Form::file('image', null) }}
+						</div>
 						<div class="col-md-8 form-group col-md-offset-2">
 							{{ Form::submit('Submit') }}
 						</div>

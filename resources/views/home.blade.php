@@ -33,8 +33,13 @@
                     
                 </div>
                 @if($group == 1)
-                <a style="color:white" href="{{ route('register') }}"><button class="btn-block btn-primary">Add new user to the system</button></a>
-                <a style="color:white" href="{{ route('view-users') }}"><button class="btn-block btn-primary">main.ViewUsers</button></a>
+                {{ Form::open(array('route' => array('register'), 'method' => 'get')) }}
+                            {{ Form::submit(Lang::get('main.RegisterUsers'), array('class' => 'btn-block btn-primary')) }}
+                            {{ Form::close() }}
+                {{ Form::open(array('route' => array('view-users'), 'method' => 'get')) }}
+                            {{ Form::submit(Lang::get('main.ViewUsers'), array('class' => 'btn-block btn-primary')) }}
+                            {{ Form::close() }}
+                
                 @endif
             </div>
         </div>

@@ -21,6 +21,7 @@ class CreateKartsTable extends Migration
             $table->boolean('usable')->nullable();
             $table->boolean('on_track')->nullable();
             $table->boolean('broken')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
