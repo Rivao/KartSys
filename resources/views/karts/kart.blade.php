@@ -11,11 +11,11 @@
 
 							<p class="col-xs-12">@lang('main.KartNumber'): {{ $kart->kart_nr }}</p>
 							<p class="col-xs-12">@lang('main.KartModel'): {{ $kart->model }}</p>
-              @if($kart->image)
+             			 	@if($kart->image)
 							<div class="col-xs-6 col-xs-offset-3">
 		        				<img src="{{ asset('kart_images/'.$kart->image) }}" style="width:80%">
-		        	</div>
-		        	@endif
+				        	</div>
+				        	@endif
 							<p class="col-xs-4">@lang('main.Usable') {{  $usable }}</p>
 							<p class="col-xs-4">@lang('main.OnTrack') {{  $on_track }}</p>
 							<p class="col-xs-4">@lang('main.Broken') {{ $broken }}</p>

@@ -38,9 +38,11 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <ul class="nav navbar-nav">
+                        @if(Auth::user())
                         <li><a id="langSel">@lang('main.Language'):</a></li>
                         <li><a href="{{ route('langRoute', 'en') }}">@lang('main.English')</a></li>
                         <li><a href="{{ route('langRoute', 'lv') }}">@lang('main.Latvian')</a></li>
+                        @endif
 
                     </ul>
                 </div>

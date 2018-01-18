@@ -17,9 +17,10 @@ class Lang
      */
     public function handle($request, Closure $next)
     {
-
-        $locale = Auth::user()->lang;
-        App::setLocale($locale);
+        if(Auth::user()){
+            $locale = Auth::user()->lang;
+            App::setLocale($locale);
+        }
 
         return $next($request);
     }

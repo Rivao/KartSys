@@ -31,11 +31,12 @@ class HomeController extends Controller
 
     public function language($lang)
     {
-        if($lang == 'en' || $lang == 'lv') {
+        if(($lang == 'en' || $lang == 'lv') && Auth::user()) {
             $user = Auth::user();
             $user->lang = $lang;
             $user->save();
         }
+        
 
         return back();
     }

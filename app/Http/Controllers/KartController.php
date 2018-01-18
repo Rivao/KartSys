@@ -103,12 +103,12 @@ class KartController extends Controller
 
         $kart = DB::table('karts')->where('id', $kart_id->id)->first();
 
-        if($kart->usable != null)$usable = 'Usable: &#10004;'; //logic for ticks and x'es
-            else $usable = 'Usable: &#10006;';
-        if($kart->on_track != null)$on_track = 'On Track: &#10004;';
-            else $on_track = 'On Track: &#10006;';
-        if($kart->broken != null)$broken = 'Broken: &#10004;';
-            else $broken = 'Broken: &#10006;';
+        if($kart->usable != null)$usable = ' &#10004;'; //logic for ticks and x'es
+            else $usable = ' &#10006;';
+        if($kart->on_track != null)$on_track = ' &#10004;';
+            else $on_track = ' &#10006;';
+        if($kart->broken != null)$broken = ' &#10004;';
+            else $broken = ' &#10006;';
 
         $comments = DB::table('comments')
                         ->where('kart_id', $kart_id->id)

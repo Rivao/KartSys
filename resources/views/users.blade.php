@@ -26,9 +26,9 @@
 						<td>{{ $user->last_name }}</td>
 						<td>{{ $user->email }}</td>
 
-						@if($user->group == 1)
+						@if($user->group_id == 1)
 							<td>@lang('main.Manager')</td>
-						@elseif($user->group == 2)
+						@elseif($user->group_id == 2)
 							<td>@lang('main.Technical')</td>
 						@else
 							<td>@lang('main.Administrator')</td>

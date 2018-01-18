@@ -60,6 +60,6 @@ Route::get('/users/{id}', 'ManagerController@edit')->name('edit-users')->middlew
 Route::delete('users/deleteUser/{id}', 'ManagerController@destroy')->name('delete-users')->middleware('is-manager')->middleware('lang');
 
 
-Route::get('{lang}', 'HomeController@language')->name('langRoute')->middleware('auth')->middleware('lang');
+Route::get('{lang}', 'HomeController@language')->name('langRoute')->middleware('lang');
 
 
