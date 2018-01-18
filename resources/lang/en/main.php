@@ -11,6 +11,8 @@ return [
 	'Latvian'			=> 'Latvian',
 	'Language'			=> 'Language',
 
+	'Logout'			=> 'Logout',
+
 	//Galvenā lapa
 	'Hello'				=> 'Hello and Welcome to the Karting Hall system!',
 	'TextMen'			=> 'As a manager, in this system You can add a new user, make and view reservations, add, view and edit kartings.',

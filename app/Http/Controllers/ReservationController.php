@@ -70,13 +70,28 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
 
+
+        $required = 'This field is required';
+        $unique = 'This date and time is already taken';
+        $integer = 'This field must be an integer';
+        $max = 'Entered value contains too many simbols';
+        $min = 'Entered value is too small';
+
+        if(Auth::user()->lang == 'lv') {
+            $required = 'Šis lauks ir obligāts';
+            $unique = 'Šis datums un laiks jau ir aizņemts';
+            $integer = 'Ir jāievada skaitlis';
+            $max = 'Ievadītā vērtība ir par lielu';
+            $min = 'Ievadītā vērtība ir par mazu';
+        }
+
         $messages = [ //messages to show on specific errors
 
-            'required' => 'This field is required',
-            'unique' => 'This date or time is already taken',
-            'integer' => 'This field must be an integer',
-            'max' => 'Entered value contains too many simbols',
-            'min' => 'Entered value is too small'
+            'required' => $required,
+            'unique' => $unique,
+            'integer' => $integer,
+            'max' => $max,
+            'min' => $min
         ];
 
         $rules = [ // validation rules
@@ -87,7 +102,7 @@ class ReservationController extends Controller
             'hours' => 'required|integer',
             'minutes' => 'required|integer',
             'length' => 'required|integer',
-            'numberRiders' => 'required|integer'
+            'numberRiders' => 'required|min:1|integer'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -168,16 +183,30 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        
+       
+        $required = 'This field is required';
+        $unique = 'This date and time is already taken';
+        $integer = 'This field must be an integer';
+        $max = 'Entered value contains too many simbols';
+        $min = 'Entered value is too small';
+    
+        if(Auth::user()->lang == 'lv') {
+            $required = 'Šis lauks ir obligāts';
+            $unique = 'Šis datums un laiks jau ir aizņemts';
+            $integer = 'Ir jāievada skaitlis';
+            $max = 'Ievadītā vērtība ir par lielu';
+            $min = 'Ievadītā vērtība ir par mazu';
+        }
 
         $messages = [ //messages to show on specific errors
 
-            'required' => 'This field is required',
-            'integer' => 'This field must be an integer',
-            'max' => 'Entered value contains too many simbols',
-            'min' => 'Entered value is too small',
-            'unique' => 'This date and time is already taken',
+            'required' => $required,
+            'unique' => $unique,
+            'integer' => $integer,
+            'max' => $max,
+            'min' => $min
         ];
+
 
         $rules = [ // validation rules
             'first_name' => 'required|max:100|string',
@@ -187,7 +216,7 @@ class ReservationController extends Controller
             'hours' => 'required|integer',
             'minutes' => 'required|integer',
             'length' => 'required|integer',
-            'numberRiders' => 'required|integer'
+            'numberRiders' => 'required|min:1|integer'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

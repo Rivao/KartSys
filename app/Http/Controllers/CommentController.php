@@ -38,9 +38,15 @@ class CommentController extends Controller
     public function store(Request $request, $kart_id)
     {
 
+        $required = 'Please enter your message';
+
+        if(Auth::user()->lang == 'lv') {
+            $required = 'Lūdzu, ievadiet savu ziņu!';
+        }
+
         $messages = [ //messages to show on specific errors
 
-            'required' => 'Please enter your message'
+            'required' => $required,
 
         ];
 

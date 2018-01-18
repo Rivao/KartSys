@@ -9,6 +9,8 @@ use DB;
 use CommentController;
 use App\User;
 
+use Auth;
+
 class KartController extends Controller
 {
 
@@ -49,17 +51,39 @@ class KartController extends Controller
     public function store(Request $request)
     {
         
+       
+        $required = 'This field is required';
+        $unique = 'This date and time is already taken';
+        $integer = 'This field must be an integer';
+        $max = 'Entered value contains too many simbols';
+
+        $usable = 'This must be checked, if the kart is not on track or broken';
+        $on_track = 'This must be checked, if the kart is on the track at the moment';
+        $broken = 'This must be checked, if the kart is broken and not usabe or on track';
+
+        if(Auth::user()->lang == 'lv') {
+            $required = 'Šis lauks ir obligāts';
+            $unique = 'Šis datums un laiks jau ir aizņemts';
+            $integer = 'Ir jāievada skaitlis';
+            $max = 'Ievadītā vērtība ir par lielu';
+    
+            $usable = 'Šim jābūt atzīmētam, ja kartings nav trasē un nav saplīsis';
+            $on_track = 'Šim jābūt atzīmētam, ja kartings šobrīd atrodas trasē';
+            $broken = 'Šim jābūt atzīmētam, ja kartings ir saplīsis';
+
+        }
+
         $messages = [ //messages to show on specific errors
 
-            'required' => 'This field is required',
-            'unique' => 'This field is already in the database',
-            'integer' => 'This field must be an integer',
-            'max' => 'Entered value contains too many simbols',
-            'usable.required_without_all' => 'This must be checked, if the kart is not on track or broken',
-            'on_track.required_without_all' => 'This must be checked, if the kart is on the track at the moment',
-            'broken.required_without_all' => 'This must be checked, if the kart is broken and not usabe or on track',
-
+            'required' => $required,
+            'unique' => $unique,
+            'integer' => $integer,
+            'max' => $max,
+            'usable.required_without_all' => $usable,
+            'on_track.required_without_all' => $on_track,
+            'broken.required_without_all' => $broken,
         ];
+
 
         $rules = [ // validation rules
             'kart_nr' => 'required|unique:karts|integer',
@@ -153,16 +177,36 @@ class KartController extends Controller
      */
     public function update(Request $request, Kart $kart)
     {
+        $required = 'This field is required';
+        $unique = 'This date and time is already taken';
+        $integer = 'This field must be an integer';
+        $max = 'Entered value contains too many simbols';
+
+        $usable = 'This must be checked, if the kart is not on track or broken';
+        $on_track = 'This must be checked, if the kart is on the track at the moment';
+        $broken = 'This must be checked, if the kart is broken and not usabe or on track';
+
+        if(Auth::user()->lang == 'lv') {
+            $required = 'Šis lauks ir obligāts';
+            $unique = 'Šis datums un laiks jau ir aizņemts';
+            $integer = 'Ir jāievada skaitlis';
+            $max = 'Ievadītā vērtība ir par lielu';
+    
+            $usable = 'Šim jābūt atzīmētam, ja kartings nav trasē un nav saplīsis';
+            $on_track = 'Šim jābūt atzīmētam, ja kartings šobrīd atrodas trasē';
+            $broken = 'Šim jābūt atzīmētam, ja kartings ir saplīsis';
+
+        }
+
         $messages = [ //messages to show on specific errors
 
-            'required' => 'This field is required',
-            'unique' => 'This field is already in the database',
-            'integer' => 'This field must be an integer',
-            'max' => 'Entered value contains too many simbols',
-            'usable.required_without_all' => 'This must be checked, if the kart is not on track or broken',
-            'on_track.required_without_all' => 'This must be checked, if the kart is on the track at the moment',
-            'broken.required_without_all' => 'This must be checked, if the kart is broken and not usabe or on track',
-
+            'required' => $required,
+            'unique' => $unique,
+            'integer' => $integer,
+            'max' => $max,
+            'usable.required_without_all' => $usable,
+            'on_track.required_without_all' => $on_track,
+            'broken.required_without_all' => $broken,
         ];
 
         if($kart->kart_nr != request('kart_nr')) {
