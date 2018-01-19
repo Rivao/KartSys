@@ -22,11 +22,11 @@ class ReservationController extends Controller
         $today = false;
 
         $reservations = DB::table('reservations')
-                        ->orderBy('date','desc')
+                        ->orderBy('date','asc')
                         ->get();
 
         $users = DB::table('users')
-                ->orderBy('id','desc')
+                ->orderBy('id','asc')
                 ->get();
 
         return view('reservations.index', compact('today', 'reservations', 'users'));
@@ -37,11 +37,11 @@ class ReservationController extends Controller
         $today = true;
 
         $reservations = DB::table('reservations')
-                        ->orderBy('date','desc')
+                        ->orderBy('date','asc')
                         ->get();
 
         $users = DB::table('users')
-                ->orderBy('id','desc')
+                ->orderBy('id','asc')
                 ->get();
 
         return view('reservations.index', compact('today','reservations', 'users'));
@@ -137,11 +137,11 @@ class ReservationController extends Controller
         $resDb->save(); //save data to database
 
         $reservations = DB::table('reservations')
-                        ->orderBy('id','desc')
+                        ->orderBy('date','asc')
                         ->get();
 
         $users = DB::table('users')
-                ->orderBy('id','desc')
+                ->orderBy('id','asc')
                 ->get();
         
 

@@ -85,6 +85,12 @@ return [
 	'Password'			=> 'Password',
 	'ConfirmPassword'	=> 'Confirm Password',
 
+	//Autentificēšanās
+	'Authentication'    => 'Authentication',
+	'Remember'			=> 'Remember me',
+	'ForgotPass'		=> 'Forgot password',
+	'Login'				=> 'Login',
+
 ]
 
 

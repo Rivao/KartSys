@@ -86,6 +86,12 @@ return [
 	'Password'			=> 'Parole',
 	'ConfirmPassword'	=> 'Apstiprināt paroli',
 
+	//Autentificēšanās
+	'Authentication'    => 'Autentificēšanās',
+	'Remember'			=> 'Atcerēties',
+	'ForgotPass'		=> 'Aizmirsāt paroli?',
+	'Login'				=> 'Autentificēties',
+
 ]
 
 
